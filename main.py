@@ -1,13 +1,13 @@
 import os
 import webapp2
 import data
-import ndb
 
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 from google.appengine.api import images
 from google.appengine.api import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
+from google.appengine.ext import ndb
 
 # FUNCTION
 
@@ -29,6 +29,8 @@ def get_template_parameters():
     values = {}
     if get_user_email():
         values['logout_url'] = users.create_logout_url('/')
+        values['upload_url'] = blobstore.create_upload_url('/upload')
+        values['user'] = get_user_email
     else:
         values['login_url'] = users.create_login_url('/')
     return values
@@ -51,7 +53,6 @@ class SaveInterestsHandler(webapp2.RequestHandler):
     def post(self):
         interests = []
         interests = self.request.post('interests')
-        
 
 
 class SaveProfileHandler(webapp2.RequestHandler):
@@ -61,12 +62,55 @@ class SaveProfileHandler(webapp2.RequestHandler):
         biography = self.request.get('biography')
         location ="Pittsburgh, PA"
         data.save_profile(email, name, biography, location)
-        
+
+class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        values = get_template_parameters()
+    
+        if get_user_email():
+            upload_files = self.get_uploads()
+            blob_info = upload_files[0]
+            type = blob_info.content_type
+
+            # we want to make sure the upload is a known type.
+            if type in ['image/jpeg', 'image/png', 'image/gif', 'image/webp']:
+                name = self.request.get('name')
+                my_image = MyImage()
+                my_image.name = name
+                my_image.user = values['user']
+
+                # image is a BlobKeyProperty, so we will retrieve the key for this blob
+                my_image.image = blob_info.key()
+                my_image.put()
+                image_id = my_image.key.urlsafe()
+                self.redirect('/image?id=' + image_id)
+
+class ImageHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+    
+        # we'll get the ID from the request
+        image_id = self.request.get('id')
+    
+        # this will allow us to retrieve it from NDB
+        my_image = ndb.Key(urlsafe=image_id).get()
+
+        # we'll set some parameters and pass this to the template
+        values['image_id'] = image_id
+        values['image_name'] = my_image.name
+        render_template(self, 'profilefeed.html', values)
+
+class MyImage(ndb.Model):
+    name = ndb.StringProperty()
+    image = ndb.BlobKeyProperty()
+    user = ndb.StringProperty()
 # APP
 
 
 app = webapp2.WSGIApplication([
     ('/edit-profile', EditProfileHandler),
     ('/profile-save', SaveProfileHandler),
-    ('/.*', MainHandler)
-])
+    ('/image', ImageHandler),
+    ('/upload', FileUploadHandler),
+    ('/.*', MainHandler),
+], debug=True)
