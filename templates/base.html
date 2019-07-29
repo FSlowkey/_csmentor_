@@ -22,7 +22,7 @@
             <a href = "/"> Logout </a> <!-- could have to be changed according to the login status of the user-->
             <a href = "/edit-interests"> Edit Interests </a>
             <a href = "/edit-bio"> Edit Bio</a>
-           <!-- <img src="{{% profile-pic %}}"> <!-- not too sure if this is the right way to insert pictures -->
+           <img src="{{ profile_pic }}"> <!-- not too sure if this is the right way to insert pictures -->
             {% endif %}
         </div>
         {% block content %}{% endblock %}
