@@ -33,9 +33,29 @@ class MainHandler(webapp2.RequestHandler):
         values = get_template_parameters()
         render_template(self, 'mainpage.html', values)
 
+
+class EditProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'edit-profile.html', values)
+
+
+#class SaveProfileHandler(webapp2.RequestHandler):
+ #   def post(self):
+  #      email = get_user_email()
+   #     values = []
+    #    values['name'] = name
+     #   values['biography'] = biography
+      #  values['pic'] = pic
+       # values['location'] = location
+        #data.save_profile(email, name, biography, pic, location)
+        
+    #render_template(self, 'edit-profile.html',values)
 # APP
 
 
 app = webapp2.WSGIApplication([
+    ('/edit-profile', EditProfileHandler),
+    #('/profile-save', ProfileSaveHandler)
     ('/.*', MainHandler)
 ])
