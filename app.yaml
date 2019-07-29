@@ -1,0 +1,13 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /i
+  static_dir: static_files
+- url: .* #send everything that isn't /i to main.app(which is within python)
+  script: main.app
+
+libraries:
+- name: jinja2
+  version: latest
