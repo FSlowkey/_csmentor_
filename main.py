@@ -4,13 +4,13 @@ import data
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 
+# FUNCTION
 
 
- #FUNCTION
- 
 def render_template(handler, file_name, template_values):
-    path= os.path.join(os.path.dirname(__file__), 'templates/', file_name)
+    path = os.path.join(os.path.dirname(__file__), 'templates/', file_name)
     handler.response.out.write(template.render(path, template_values))
+
 
 def get_user_email():
     user = users.get_current_user()
@@ -42,13 +42,21 @@ class EditProfileHandler(webapp2.RequestHandler):
         render_template(self, 'edit-profile.html', values)
 
 
+class SaveInterestsHandler(webapp2.RequestHandler):
+    def post(self):
+        interests = []
+        interests = self.request.post('interests')
+        
+
+
 class SaveProfileHandler(webapp2.RequestHandler):
     def post(self):
         email = get_user_email()
         name = self.request.get('name')
-        biography= self.request.get('biography')
-        location="Pittsburgh, PA"
-        data.save_profile(email,name,biography,location)
+        biography = self.request.get('biography')
+        location ="Pittsburgh, PA"
+        data.save_profile(email, name, biography, location)
+        
 # APP
 
 
