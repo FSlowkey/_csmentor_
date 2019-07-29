@@ -1,5 +1,5 @@
 import os
-import #our own datastore py
+import data
 import webapp2
 import datetime
 from google.appengine.api import users
@@ -27,12 +27,12 @@ def get_template_parameters():
     return values
 
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        values = get_template_parameters()
-        if get_user_email():
-            profile = socialdata.get_user_profile(get_user_email())
-            values['name'] = profile.name
+#class MainHandler(webapp2.RequestHandler):
+ #   def get(self):
+  #      values = get_template_parameters()
+   #     if get_user_email():
+    #        profile = socialdata.get_user_profile(get_user_email())
+     #       values['name'] = profile.name
         # user = users.get_current_user()
         # values = {}
         # if user:
@@ -40,41 +40,41 @@ class MainHandler(webapp2.RequestHandler):
             # values['nickname'] = user.nickname()
         # else:
             # values['login_url'] = users.create_login_url('/')
-        render_template(self, 'mainpage.html', values)
+#        render_template(self, 'mainpage.html', values)
 
 
-class ProfileEditHandler(webapp2.RequestHandler):
-    def get(self):
-        if not get_user_email():
-            self.redirect('/')
-        else:
-            values = get_template_parameters()
-            profile = socialdata.get_user_profile(get_user_email())
-            values['name'] = profile.name
-            values['description'] = profile.description
-            render_template(self, 'profile-edit.html', values)
+#class ProfileEditHandler(webapp2.RequestHandler):
+ #   def get(self):
+  #      if not get_user_email():
+   #         self.redirect('/')
+    #    else:
+     #       values = get_template_parameters()
+      #      profile = data.get_user_profile(get_user_email())
+       #     values['name'] = profile.name
+        #    values['description'] = profile.description
+         #   render_template(self, 'profile-edit.html', values)
 
             
-class ProfileSaveHandler(webapp2.RequestHandler):
-    def post(self):
-        email = get_user_email()
-        values = []
-        values['name'] = name
-        values['biography'] = biography
-        values['pic'] = pic
-        values['location'] = location
-        socialdata.save_profile(email, name, biography, pic, location)
+#class ProfileSaveHandler(webapp2.RequestHandler):
+ #   def post(self):
+  #      email = get_user_email()
+   #     values = {}
+    #    values['name'] = name
+     #   values['biography'] = biography
+      #  values['pic'] = pic
+       # values['location'] = location
+        #socialdata.save_profile(email, name, biography, pic, location)
         
-    render_template(self, 'edit-profile.html',values)
+    #render_template(self, 'edit-profile.html',values)
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-    render_template(self, 'mainpage.html', values)
+        render_template(self, 'mainpage.html', values)
 
 
 
 app = webapp2.WSGIApplication([
     ('.*', MainHandler),
-    ('/edit-profile, edit
+    #('/edit-profile', ProfileEditHandler)
 ])
