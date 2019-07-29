@@ -1,0 +1,2 @@
+from socialmodel import UserProfile
+
