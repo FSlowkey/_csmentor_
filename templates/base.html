@@ -1,28 +1,30 @@
+    <html>
     <head>
         <link rel = "stylesheet" href='/i/style.css'>
     </head>
     <body>
-        <div class="header">
+        <div class="topmenu">
         <h1>CS Mentors</h1>
             <p>Helping under-resourced CS students connect with field experts</p>
         </div>
-       <!-- <div id = 'topmenu'>
-            <a href = '/' >Home</a>
-            <a href ='/profile-list'>Recently Updated Profiles</a>
-            {% if login_url %}
-            <a href = "{{login_url}}">Login</a>
-            {% else %}
-            <a href = "{{logout_url}}">Logout</a>
-            <a href='/profile-edit'>Edit Profile</a>
-            <a href='/p/{{name}}'>View Profile</a>
-            {% endif %}
-        </div>
-        {% if successmsg %}
+      <!--  {% if successmsg %}
         <div id='successmsg'>{{successmsg}}</div>
         {% endif %}
         {% if errormsg %}
         <div id='errormsg'>{{errormsg}}</div>
         {% endif %} -->
+        <div>
+            <a href = '/' >Home</a>
+            {% if login_url %}
+            <a href = "{{login_url}}">Login</a>
+            {% else %}
+            <a href = "{{logout_url}}">Logout</a>
+            <a href = "/"> Logout </a> <!-- could have to be changed according to the login status of the user-->
+            <a href = "/edit-interests"> Edit Interests </a>
+            <a href = "/edit-bio"> Edit Bio</a>
+            <img src="{{% profile-pic %}}"> <!-- not too sure if this is the right way to insert pictures -->
+            {% endif %}
+        </div>
         {% block content %}{% endblock %}
     </body>                  
 </html>
