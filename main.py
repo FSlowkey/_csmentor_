@@ -8,7 +8,7 @@ from google.appengine.api import users
  
 def render_template(handler, file_name, template_values):
     path= os.path.join(os.path.dirname(__file__), 'templates/', file_name)
-
+    handler.response.out.write(template.render(path, template_values))
 
 def get_user_email():
     user = users.get_current_user()
