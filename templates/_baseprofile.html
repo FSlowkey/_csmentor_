@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <link rel = "stylesheet" href= "/i/styles.css">
+    </head>
+    <body>
+        <div id = "topview">
+            <h1>{{handle}}
+            <a href = "/">Logout</a>
+            <a href = "/edit-interests">Edit Interests</a>
+            <a href = "edit-bio">Edit Bio</a>
+            <img {{% profile-pic %}}>
+            <h1>{name}<h2>
+            {% block content %}
+            {% endblock %}
+    </body>
+</html>
