@@ -1,5 +1,6 @@
 import os
 import webapp2
+import data
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 
@@ -40,22 +41,19 @@ class EditProfileHandler(webapp2.RequestHandler):
         render_template(self, 'edit-profile.html', values)
 
 
-#class SaveProfileHandler(webapp2.RequestHandler):
- #   def post(self):
-  #      email = get_user_email()
-   #     values = []
-    #    values['name'] = name
-     #   values['biography'] = biography
-      #  values['pic'] = pic
-       # values['location'] = location
-        #data.save_profile(email, name, biography, pic, location)
-        
-    #render_template(self, 'edit-profile.html',values)
+class SaveProfileHandler(webapp2.RequestHandler):
+    def post(self):
+        email = get_user_email()
+        name = self.request.get('name')
+        biography= self.request.get('biography')
+        profile_picture= self.request.get('profile_picture')
+        location="Pittsburgh, PA"
+        data.save_profile(email,name,biography,profile_picture,location)
 # APP
 
 
 app = webapp2.WSGIApplication([
     ('/edit-profile', EditProfileHandler),
-    #('/profile-save', ProfileSaveHandler)
+    ('/profile-save', SaveProfileHandler),
     ('/.*', MainHandler)
 ])
