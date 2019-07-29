@@ -1,4 +1,4 @@
-from socialmodel.py import UserProfile
+from socialmodel import UserProfile
 
 
 # THIS IS THE FILE THAT DEALS WITH RETRIEVING A PROFILE AND SAVING THE EDITS
