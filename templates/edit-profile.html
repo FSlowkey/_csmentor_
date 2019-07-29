@@ -8,12 +8,26 @@
             Name:<br>
             <input type="text" name="name" value = "{{name}}"><br><br>
             Location:<br>
-            <input type = "text" name = "location" value = "{{location}}"<br><br>
+
+<script>
+    
+    $.get("https://ipinfo.io", function (response) {
+    $("#address").html("Current Location: " + response.city + ", " + response.region +" (please, make sure your location is accurate.)");
+$.post("/save-location",)
+
+}, "jsonp");
+
+
+
+
+</script>
+
             Biography:<br>
             <textarea name="biography" rows="16">{{biography}}</textarea><br><br>
             Upload Profile_picture:<br>
             <input type="file" name="pic" accept="image/*">
             <input type="submit">
+
 </form>
     </body>
 </html>
