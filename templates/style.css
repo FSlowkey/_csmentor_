@@ -5,3 +5,19 @@
   color: white;
   font-size: 30px;
 }
+
+#container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#leftThing {
+  width: 50%;
+  background-color: blue;
+}
+
+#rightThing {
+  width: 50%;
+  background-color: yellow;
+}
