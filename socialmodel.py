@@ -6,7 +6,7 @@ class UserProfile(ndb.Model):
     name = ndb.StringProperty()
     email= ndb.StringProperty()
     biography= ndb.TextProperty()
-    profile_picture_url= ndb.blobProperty()
-    location= ndb.GeoPtProperty()
-    interests= ndb.PickleProperty()
+    profile_picture= ndb.BlobProperty()
+    location= ndb.StringProperty()
+    #interests= ndb.PickleProperty()
     
