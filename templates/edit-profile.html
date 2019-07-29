@@ -1,0 +1,21 @@
+<html>
+    <header>
+
+    </header>
+    <body> 
+        <h1>Create Profile</h1>
+        <form method="post" action="/profile-save">
+            Name:<br>
+            <input type="text" name="name" value = "{{name}}"><br><br>
+            Change Profile picture: 
+            <form action="/action_page.php">
+                <input type="file" name="pic" accept="image/*">
+                <input type="submit">
+            Location:<br>
+            <input type = "text" name = "location" value = "{{location}}"<br><br>
+            Biography:<br>
+            <textarea name="description" rows="16">{{description}}</textarea><br><br>
+            <input type="submit">
+</form>
+    </body>
+</html>
