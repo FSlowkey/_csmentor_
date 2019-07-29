@@ -4,7 +4,7 @@
     </header>
     <body> 
         <h1>Create Profile</h1>
-        <form method="post" action="/profile-save">
+        <form method="post"  action="/upload">
             Name:<br>
             <input type="text" name="name" value = "{{name}}"><br><br>
             Location:<br>
@@ -25,7 +25,7 @@ $.post("/save-location",)
             Biography:<br>
             <textarea name="biography" rows="16">{{biography}}</textarea><br><br>
             Upload Profile_picture:<br>
-            <input type="file" name="pic" accept="image/*">
+            <input type="file" name="profile_picture" accept="image/*">
             <input type="submit">
 
 </form>
