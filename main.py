@@ -5,6 +5,7 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import users
 
 
+
  #FUNCTION
  
 def render_template(handler, file_name, template_values):
@@ -46,9 +47,8 @@ class SaveProfileHandler(webapp2.RequestHandler):
         email = get_user_email()
         name = self.request.get('name')
         biography= self.request.get('biography')
-        profile_picture= self.request.get('profile_picture')
         location="Pittsburgh, PA"
-        data.save_profile(email,name,biography,profile_picture,location)
+        data.save_profile(email,name,biography,location)
 # APP
 
 
