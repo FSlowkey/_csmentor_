@@ -1,20 +1,18 @@
 <html>
     <header>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </header>
     <body> 
         <h1>Create Profile</h1>
         <form method="post" action="/profile-save">
             Name:<br>
             <input type="text" name="name" value = "{{name}}"><br><br>
-            Location:<br>
+            <p id="address"></p>
 
 <script>
     
     $.get("https://ipinfo.io", function (response) {
     $("#address").html("Current Location: " + response.city + ", " + response.region +" (please, make sure your location is accurate.)");
-$.post("/save-location",)
-
 }, "jsonp");
 
 
