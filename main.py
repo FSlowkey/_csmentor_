@@ -1,10 +1,9 @@
 import os
-import socialdata
+import #our own datastore py
 import webapp2
-
-
-from google.appengine.ext.webapp import template
+import datetime
 from google.appengine.api import users
+from google.appengine.ext.webapp import template
 
 
 def render_template(handler, file_name, template_values):
