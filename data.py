@@ -32,6 +32,18 @@ def get_user_profile(email):
         return profile
     return None
 
+def statLearner(email, status):
+    p= get_user_profile(email)
+    if status == True:
+        p.isLearner = True
+    p.put()
+
+def statExpert(email, status):
+    p= get_user_profile(email)
+    if status == True:
+        p.isExpert = True
+    p.put()
+
 
 def get_user_interests(email):
     user = get_user_profile(email)
