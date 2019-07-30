@@ -16,6 +16,12 @@ def save_profile(email, name, biography, location, profile_pic):
         p = UserProfile(email=email, name=name, biography=biography, location = location, profile_pic = profile_pic)
         p.put()
 
+def define_stat(email, statusl, statuse):
+    p= get_user_profile(email)
+    p.isLearner = statusl
+    p.isExpert = statuse
+    p.put()
+
 
 def save_interest(email, interests):
     p = get_user_profile(email)
@@ -33,18 +39,18 @@ def get_user_profile(email):
         return profile
     return None
 
-def statLearner(email, status):
-    p= get_user_profile(email)
-    if status == True:
-        p.isLearner = True
-    p.put()
 
-def statExpert(email, status):
-    p= get_user_profile(email)
-    if status == True:
-        p.isExpert = True
-    p.put()
+def is_learner(email):
+    p = get_user_profile(email)
+    if p and p.isLearner:
+        return True
+    return False
 
+def is_expert(email):
+    p = get_user_profile(email)
+    if p and p.isExpert:
+        return True
+    return False
 
 def get_user_interests(email):
     user = get_user_profile(email)
