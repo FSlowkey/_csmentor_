@@ -19,9 +19,9 @@
             <a href = "{{login_url}}">Login</a>
             {% else %}
             <a href = "{{logout_url}}">Logout</a>
-             <a href = "/edit-interests"> Edit Interests </a>
+            <a href = "/edit-interests"> Edit Interests </a>
             <a href = "/edit-profile-student"> Edit Profile</a>
-           <img src="{{profile_pic}}"> <!-- not too sure if this is the right way to insert pictures -->
+            <img src="/img?" id="{{my_image}}">
             {% endif %}
         </div>
         {% block content %}{% endblock %}

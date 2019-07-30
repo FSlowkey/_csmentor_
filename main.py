@@ -30,7 +30,7 @@ def get_template_parameters():
     if get_user_email():
         values['logout_url'] = users.create_logout_url('/')
         values['upload_url'] = blobstore.create_upload_url('/upload')
-        values['user'] = get_user_email
+        values['user'] = get_user_email()
     else:
         values['login_url'] = users.create_login_url('/')
     return values
@@ -55,13 +55,13 @@ class SaveInterestsHandler(webapp2.RequestHandler):
         interests = self.request.post('interests')
 
 
-class SaveProfileHandler(webapp2.RequestHandler):
-    def post(self):
-        email = get_user_email()
-        name = self.request.get('name')
-        biography = self.request.get('biography')
-        location =self.request.get('cityhidden')
-        data.save_profile(email, name, biography, location)
+#class SaveProfileHandler(webapp2.RequestHandler):
+ #   def post(self):
+  #      email = get_user_email()
+   #     name = self.request.get('name')
+    #    biography = self.request.get('biography')
+     #   location =self.request.get('cityhidden')
+      #  data.save_profile(email, name, biography, location)
 
 
 class EditInterestsHandler(webapp2.RequestHandler):
@@ -74,11 +74,17 @@ class EditInterestsHandler(webapp2.RequestHandler):
 class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
         values = get_template_parameters()
-    
+        print("in post")
         if get_user_email():
+            print("got user email")
             upload_files = self.get_uploads()
             blob_info = upload_files[0]
             type = blob_info.content_type
+            email = get_user_email()
+            name = self.request.get('name')
+            biography = self.request.get('biography')
+            location =self.request.get('cityhidden')
+            print("save attributes")
 
             # we want to make sure the upload is a known type.
             if type in ['image/jpeg', 'image/png', 'image/gif', 'image/webp']:
@@ -91,6 +97,8 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
                 my_image.image = blob_info.key()
                 my_image.put()
                 image_id = my_image.key.urlsafe()
+                data.save_profile(email, name, biography, location, my_image)
+                print("redirect")
                 self.redirect('/image?id=' + image_id)
 
 class ImageHandler(webapp2.RequestHandler):
@@ -130,7 +138,7 @@ class EditInterestsHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/edit-profile-student', EditStudentProfileHandler),
-    ('/profile-save', SaveProfileHandler),
+    #('/profile-save', SaveProfileHandler),
     ('/image', ImageHandler),
     ('/upload', FileUploadHandler),
     ('/interests', EditInterestsHandler),
