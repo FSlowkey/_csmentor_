@@ -8,6 +8,7 @@ class UserProfile(ndb.Model):
     email = ndb.StringProperty()
     biography= ndb.TextProperty()
     location= ndb.StringProperty()
+    profile_pic= ndb.BlobKeyProperty()
 #<<<<<<< HEAD
     isLearner= ndb.BooleanProperty()
     isExpert = ndb.BooleanProperty()
