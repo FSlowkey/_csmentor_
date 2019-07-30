@@ -64,13 +64,6 @@ class SaveProfileHandler(webapp2.RequestHandler):
         data.save_profile(email, name, biography, location)
 
 
-class EditInterestsHandler(webapp2.RequestHandler):
-    def get(self):
-        values = get_template_parameters()
-        if get_user_email():
-            #values[interests] = data.get_user_interests.get_user_email()) 
-            render_template(self, 'interests.html', values)
-
 class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
         values = get_template_parameters()
@@ -123,6 +116,9 @@ class EditInterestsHandler(webapp2.RequestHandler):
 
     def post(self):
         values = get_template_parameters()
+        i = 
+        if i.interests[skill] == checked
+        i.interests[skill] = False
         interests = self.request.get("interests")
         data.save_profile(interests)
 # APP
