@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-<form method='post' action='/profile-save'> #
-    {% for  %}
-    <input type="checkbox" name="language1" value="Language"> Java <br>
-    <input type="checkbox" name="language2" value="Language"> Python <br>
-    <input type="checkbox" name="language3" value="Language" checked> C++ <br>
-    <input type="checkbox" name="language4" value="Language"> HTML <br>
-    <input type="checkbox" name="language5" value="Language"> CSS <br>
-    <input type="checkbox" name="language6" value="Language" checked> JavaScript<br>
-    <input type="checkbox" name="advice1" value="advice"> Industry Advice <br>
+<div> {{interests}}
+<form id = "interests" method='post' action='/interests-save'> 
+
+        <input type="checkbox" name="language1" value="Language"> Java <br>
+        <input type="checkbox" name="language2" value="Language"> Python <br>
+        <input type="checkbox" name="language3" value="Language" checked> C++ <br>
+        <input type="checkbox" name="language4" value="Language"> HTML <br>
+        <input type="checkbox" name="language5" value="Language"> CSS <br>
+        <input type="checkbox" name="language6" value="Language" checked> JavaScript<br>
+        <input type="checkbox" name="advice1" value="advice"> Industry Advice <br>
     <input type="checkbox" name="advice2" value="Language"> Internships & Field Experience <br>
-    <input type='submit'>
+     <input type='submit'>
+
 </form>
 </div>
 {% endblock %}

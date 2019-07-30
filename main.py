@@ -61,6 +61,18 @@ class SaveProfileHandler(webapp2.RequestHandler):
         biography = self.request.get('biography')
         location ="Pittsburgh, PA"
         data.save_profile(email, name, biography, location)
+
+
+class EditInterestsHandler(webapp.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        if get_user_email():
+            #values[interests] = data.get_user_interests.get_user_email()) 
+            render_template(self, 'interests.html', values)
+    def post(self):
+        values = get_template_parameters()
+        interests = self.request.get("interests")
+        data.save_profile(interests)
         
 # APP
 
@@ -68,5 +80,6 @@ class SaveProfileHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/edit-profile', EditProfileHandler),
     ('/profile-save', SaveProfileHandler),
+    ('/interests', EditInterestsHandler),
     ('/.*', MainHandler)
 ])
