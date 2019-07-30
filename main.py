@@ -60,7 +60,7 @@ class SaveProfileHandler(webapp2.RequestHandler):
         email = get_user_email()
         name = self.request.get('name')
         biography = self.request.get('biography')
-        location ="Pittsburgh, PA"
+        location =self.request.get('cityhidden')
         data.save_profile(email, name, biography, location)
 
 
