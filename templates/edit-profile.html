@@ -1,33 +1,50 @@
 <html>
     <header>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </header>
     <body> 
         <h1>Create Profile</h1>
         <form method="post"  action="/upload">
             Name:<br>
             <input type="text" name="name" value = "{{name}}"><br><br>
-            Location:<br>
-
-<script>
-    
-    $.get("https://ipinfo.io", function (response) {
-    $("#address").html("Current Location: " + response.city + ", " + response.region +" (please, make sure your location is accurate.)");
-$.post("/save-location",)
-
-}, "jsonp");
-
+            <div>
+                <h4>Your current location is</h4>
+                <p id="city"></p>
+                <input type="hidden" name="cityhidden" id="cityhidden">
+                <br>
+                <p id="state"></p>
+                <br>
+                <p>(Please, make sure this information is accurate)</p>
 
 
+            </div>
 
-</script>
+
+
 
             Biography:<br>
             <textarea name="biography" rows="16">{{biography}}</textarea><br><br>
             Upload Profile_picture:<br>
             <input type="file" name="profile_picture" accept="image/*">
             <input type="submit">
+                <div id="location">
+        <script>
+    
+    $.get("https://ipinfo.io", function (response) {
+    $("#city").html(response.city);
+    $("#state").html(response.region);
+    $('#cityhidden').val(response.city);
+}, "jsonp");
+
+
+
+
+
+</script>
+    </div>
 
 </form>
+
+    
     </body>
 </html>

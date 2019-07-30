@@ -63,6 +63,7 @@ class SaveProfileHandler(webapp2.RequestHandler):
         location ="Pittsburgh, PA"
         data.save_profile(email, name, biography, location)
 
+
 class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
         values = get_template_parameters()
@@ -104,6 +105,19 @@ class MyImage(ndb.Model):
     name = ndb.StringProperty()
     image = ndb.BlobKeyProperty()
     user = ndb.StringProperty()
+
+
+class EditInterestsHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        if get_user_email():
+            #values[interests] = data.get_user_interests.get_user_email()
+            render_template(self, 'interests.html', values)
+
+    def post(self):
+        values = get_template_parameters()
+        interests = self.request.get("interests")
+        data.save_profile(interests)
 # APP
 
 
@@ -112,5 +126,6 @@ app = webapp2.WSGIApplication([
     ('/profile-save', SaveProfileHandler),
     ('/image', ImageHandler),
     ('/upload', FileUploadHandler),
-    ('/.*', MainHandler),
-], debug=True)
+    ('/interests', EditInterestsHandler),
+    ('/.*', MainHandler)
+])
