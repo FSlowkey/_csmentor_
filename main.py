@@ -64,13 +64,17 @@ class SaveProfileHandler(webapp2.RequestHandler):
 
 
 class EditInterestsHandler(webapp.RequestHandler):
-    def get(self)
+    def get(self):
         values = get_template_parameters()
         if get_user_email():
             values[interests] = data.get_user_interests(get_user_email()) 
             render_template(self, 'interests.html', values)
+
     def post(self)
         values = get_template_parameters()
+        i = 
+        if i.interests[skill] == checked
+        i.interests[skill] = False
         interests = self.request.get("interests")
         data.save_profile(interests)
         
