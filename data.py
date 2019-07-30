@@ -4,15 +4,16 @@ from socialmodel import UserProfile
 # THIS IS THE FILE THAT DEALS WITH RETRIEVING A PROFILE AND SAVING THE EDITS
 
 
-def save_profile(email, name, biography, location):
+def save_profile(email, name, biography, location, profile_pic):
     p= get_user_profile(email)
     if p:
         p.name = name
         p.biography = biography
         p.location = location
+        p.profile_pic = profile_pic
         p.put()
     else:
-        p = UserProfile(email=email, name=name, biography=biography, location = location)
+        p = UserProfile(email=email, name=name, biography=biography, location = location, profile_pic = profile_pic)
         p.put()
 
 
