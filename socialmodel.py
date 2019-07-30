@@ -7,5 +7,7 @@ class UserProfile(ndb.Model):
     email= ndb.StringProperty()
     biography= ndb.TextProperty()
     location= ndb.StringProperty()
+    isLearner= ndb.BooleanProperty()
+    isExpert = ndb.BooleanProperty()
     #interests= ndb.PickleProperty()
     
