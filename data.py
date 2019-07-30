@@ -3,6 +3,15 @@ from socialmodel import UserProfile
 
 # THIS IS THE FILE THAT DEALS WITH RETRIEVING A PROFILE AND SAVING THE EDITS
 
+def save_interests(email, interests):
+    p= get_user_profile(email)
+    if p:
+        p.interests = interests
+        p.put()
+    else:
+        p.UserProfile(interests = interests)
+        p.put()
+
 
 def save_profile(email, name, biography, location, profile_pic):
     p= get_user_profile(email)
@@ -22,15 +31,29 @@ def define_stat(email, statusl, statuse):
     p.isExpert = statuse
     p.put()
 
+def get_user_interests(email):
+    interests={
+        "Java":False,
+        "Python":False,
+        "JavaScript":False,
+        "HTML":False,
+        "CSS":False,
+        "C#":False,
+        "Industry Insight":False,
+        "Internships and Experience":False,
+        "AI":False,
+        "Machine Learning":False,
 
-def save_interest(email, interests):
-    p = get_user_profile(email)
-    if p:
-        p.interests = interests
+    }
+
+    user = get_user_profile(email)
+    if user:
+        if user.interests:
+            return user.interests
+        else:
+            return interests
     else:
-        p.UserProfile(interests = interests)
-        p.put()
-
+        return interests
 
 def get_user_profile(email):
     q = UserProfile.query(UserProfile.email == email)
@@ -52,9 +75,3 @@ def is_expert(email):
         return True
     return False
 
-def get_user_interests(email):
-    user = get_user_profile(email)
-    if user:
-        return user.interests
-    else:
-        return None

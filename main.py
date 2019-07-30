@@ -179,10 +179,65 @@ class ImageManipulationHandler(webapp2.RequestHandler):
        self.response.headers['Content-Type'] = 'image/png'
        self.response.out.write(img.execute_transforms(output_encoding=images.JPEG))
 
+#IMAGE MANIPULATION CODE ENDS HERE
 
+#FEED CONTROLLER STARTS HERE
+
+class FeedHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'profilefeed.html', values)
+
+#FEED CONTROLLER ENDS HERE
 
 
 #PROFILE SAVING CODE ENDS HERE
+
+#INTERESTS CODE STARTS HERE
+
+class SaveInterestsHandler(webapp2.RequestHandler):
+    def post(self):
+        interests = self.request.get('interests')
+        values = get_template_parameters()
+        values['interests'] = data.get_user_interests(get_user_email())
+        for key in values['interests']:
+            enabled = self.request.get(key)
+            print(enabled)
+            if enabled == key:
+                values['interests'][key]=True
+            else:
+                values['interests'][key]=False
+        new_interests = values['interests']
+        data.save_interests(get_user_email(), new_interests)
+        print(new_interests)
+
+class EditInterestsHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        if get_user_email():
+            if data.get_user_interests(get_user_email()):
+                values['interests'] = data.get_user_interests(get_user_email())
+                print(values['interests'])
+                values['interests']= values['interests'].items()
+                render_template(self, 'interest.html', values)
+            else:
+                interests={
+                "Java":False,
+                "Python":False,
+                "JavaScript":False,
+                "HTML":False,
+                "CSS":False,
+                "C#":False,
+                "Industry Insight":False,
+                "Internships and Experience":False,
+                "AI":False,
+                "Machine Learning":False,
+                }
+
+                render_template(self, 'interest.html', values)
+
+#INTERESTS CODE ENDS HERE
+
 
 app = webapp2.WSGIApplication([
     ('/set-profile', DefineHandler),
@@ -190,6 +245,9 @@ app = webapp2.WSGIApplication([
     ('/edit-profile-student', EditProfileHandler),
     ('/profile-save', SaveProfileHandler),
     ('/image', ImageHandler),
+    ('/my-feed', FeedHandler),
+    ('/interests', EditInterestsHandler),
+    ('/interests-save', SaveInterestsHandler),
     ('/img', ImageManipulationHandler),
     ('/.*', MainHandler)
 ])

@@ -11,3 +11,4 @@ class UserProfile(ndb.Model):
     profile_pic=ndb.BlobKeyProperty()
     isLearner= ndb.BooleanProperty()
     isExpert = ndb.BooleanProperty()
+    interests= ndb.PickleProperty()
