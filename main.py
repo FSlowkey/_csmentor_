@@ -288,3 +288,4 @@ app = webapp2.WSGIApplication([
     ('/img', ImageManipulationHandler),
     ('/.*', MainHandler)
 ])
+ 
