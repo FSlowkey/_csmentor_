@@ -17,22 +17,22 @@
     font-family: 'Roboto', sans-serif;
 }
 #button1 {
-  background-color: #4CAF50; /* Green */
+  background-color: white; 
   border: none;
-  color: white;
+  color: #5599FF;
   padding: 7px 10px;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
   text-decoration: none;
+  font-family: 'Roboto', sans-serif;
   display: inline-block;
   font-size: 16px;
   border-radius: 16px
 }
 
 #button2 {
-  background-color: #4CAF50; /* Green */
+  background-color: white; 
   border: none;
-  color: white;
+  color: #5599FF;
   padding: 7px 10px;
   text-align: center;
   text-decoration: none;
@@ -42,9 +42,9 @@
   border-radius: 16px
 }
 #button3 {
-  background-color: #4CAF50; /* Green */
+  background-color: white; 
   border: none;
-  color: white;
+  color: #5599FF;
   padding: 7px 10px;
   text-align: center;
   text-decoration: none;
@@ -54,9 +54,9 @@
   border-radius: 16px
 }
 #button4 {
-  background-color: #4CAF50; /* Green */
+  background-color: white; 
   border: none;
-  color: white;
+  color: #5599FF;
   padding: 7px 10px;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -66,9 +66,9 @@
   border-radius: 16px
 }
 #button5 {
-  background-color: #4CAF50; /* Green */
+  background-color: white; 
   border: none;
-  color: white;
+  color: #5599FF;
   padding: 7px 10px;
   text-align: center;
   text-decoration: none;
@@ -76,4 +76,9 @@
   display: inline-block;
   font-size: 16px;
   border-radius: 16px
+}
+div.sticky{
+    position: -webkit-stickey;
+    position: sticky;
+    top: 0;
 }

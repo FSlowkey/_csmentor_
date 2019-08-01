@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
+<head>
+        <link rel="stylesheet" href="/i/style-interest.css">
+</head>
 <div>
+    <br></br>
     <form id="interests" method ='post' action ='/interests-save'>
     {% for item in interests %}
         {% if item.1 %}
-            <input type="checkbox" name="{{item.0}}" value="{{item.0}}" checked> {{item.0}} <br></br>
+            <label class = 'container'>{{item.0}}<input type="checkbox" name="{{item.0}}" value="{{item.0}}" checked ><span class="checkmark"></span> <br></br></label>
         {% else %}
-            <input type="checkbox" name="{{item.0}}" value="{{item.0}}"> {{item.0}} <br></br>
+            <label class = 'container'>{{item.0}}<input type="checkbox" name="{{item.0}}" value="{{item.0}}" ><span class="checkmark"><br></br></label>
         {% endif %}
     {% endfor %}
-    <input type="submit">
+    <input type="submit" id = 'submit' >
     </form>
     </div>
     {% endblock %}
