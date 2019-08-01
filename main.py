@@ -125,7 +125,7 @@ class SaveProfileHandler(blobstore_handlers.BlobstoreUploadHandler):
                 data.save_profile(email, name, biography, location, blob_info.key())
 
 
-                self.redirect('/image?id=' + image_id)
+                self.redirect('/my-feed')
 
             
             
@@ -215,20 +215,25 @@ def InterestsMatch(userExpert):
         if current_user_interests[interest] and expert_user_interests[interest]:
             return True
    return False
-   
+
 class FeedHandler(webapp2.RequestHandler):
    def get(self):
-       neededlocation = data.get_user_profile(get_user_email()).location
-       print(neededlocation)
-       expert_profiles = data.get_expert_profiles(neededlocation)
-       values = get_template_parameters()
-       expert_list = []
-       for expert_profile in expert_profiles:
-           print(InterestsMatch(expert_profile))
-           if InterestsMatch(expert_profile):
-               expert_list.append(expert_profile)
-       values['available_experts'] = expert_list
-       render_template(self, 'profilefeed.html', values)
+       
+       p = get_user_email()
+       if p:
+        values = get_template_parameters()
+        neededlocation = data.get_user_profile(get_user_email()).location
+        print(neededlocation)
+        expert_profiles = data.get_expert_profiles(neededlocation)
+        expert_list = []
+        for expert_profile in expert_profiles:
+            print(InterestsMatch(expert_profile))
+            if InterestsMatch(expert_profile):
+                expert_list.append(expert_profile)
+        values['available_experts'] = expert_list
+        render_template(self, 'profilefeed.html', values)
+       else:
+            self.redirect('/')
 
 
 #FEED CONTROLLER ENDS HERE
@@ -253,7 +258,7 @@ class SaveInterestsHandler(webapp2.RequestHandler):
         new_interests = values['interests']
         data.save_interests(get_user_email(), new_interests)
         print(new_interests)
-        self.redirect('/profile-feed')
+        self.redirect('/my-feed')
 
 class EditInterestsHandler(webapp2.RequestHandler):
     def get(self):
