@@ -1,27 +1,21 @@
-    <html>
+<html>
     <head>
-        <link rel = "stylesheet" href='/i/style.css'>
+        <link rel="stylesheet" href="/i/style-base.css">
     </head>
     <body>
         <div class="topmenu">
-        <h1>CS Mentors</h1>
-            <p>Helping under-resourced CS students connect with field experts</p>
-        </div>
-      <!--  {% if successmsg %}
-        <div id='successmsg'>{{successmsg}}</div>
-        {% endif %}
-        {% if errormsg %}
-        <div id='errormsg'>{{errormsg}}</div>
-        {% endif %} -->
-        <div>
-            <a href = '/my-feed' >Home</a>
+        <h1 id = 'title' >Hyperlink</h1>
+            <p id = 'slogan' >Helping under-resourced CS students connect with field experts</p>
+        <p class = 'menulinks' >
+            <a href = '/my-feed' ><button id = 'button1'>Home</button></a>
             {% if login_url %}
-            <a href = "{{login_url}}">Login</a>
+            <a href = "{{login_url}}"><button id='button2'>Login</button></a>
             {% else %}
-            <a href = "{{logout_url}}">Logout</a>
-            <a href = "/interests"> Edit Interests </a>
-            <a href = "/edit-profile-student"> Edit Profile</a>
+            <a href = "{{logout_url}}"><button id='button3'>Logout</button></a>
+            <a href = "/interests"><button id='button4'>Edit Interests</button></a>
+            <a href = "/edit-profile-student"><button id='button5'>Edit Profile</button></a>
             {% endif %}
+        </p>
         </div>
         {% block content %}{% endblock %}
     </body>                  
