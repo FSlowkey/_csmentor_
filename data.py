@@ -12,6 +12,12 @@ def save_interests(email, interests):
         p.UserProfile(interests = interests)
         p.put()
 
+def get_profile_by_name(name):
+    q = UserProfile.query(UserProfile.name == name)
+    results = q.fetch(1)
+    for profile in results:
+        return profile
+    return None
 
 def save_profile(email, name, biography, location, profile_pic):
     p= get_user_profile(email)
@@ -25,10 +31,20 @@ def save_profile(email, name, biography, location, profile_pic):
         p = UserProfile(email=email, name=name, biography=biography, location = location, profile_pic = profile_pic)
         p.put()
 
+
+def save_email(email):
+    p= get_user_profile(email)
+    if p:
+        p.put()
+    else:
+        p = UserProfile(email=email)
+        p.put()
+
 def define_stat(email, statusl, statuse):
     p= get_user_profile(email)
     p.isLearner = statusl
     p.isExpert = statuse
+    p
     p.put()
 
 def get_user_interests(email):

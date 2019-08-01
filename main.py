@@ -19,10 +19,22 @@ def render_template(handler, file_name, template_values):
 
 def get_user_email():
     user = users.get_current_user()
+    print(user)
     if user:
         return user.email()
     else:
         return None
+
+#def get_user_name():
+ #   email = get_user_email
+  #  p= data.get_user_profile(email)
+   # if p:
+    #    return p.name
+    #else:
+     #   return None
+    
+
+
 
 
 def get_template_parameters():
@@ -30,19 +42,21 @@ def get_template_parameters():
     email = get_user_email()
     if email:
         values['learner'] = data.is_learner(email)
-        values['expert'] = data.is_learner(email)
+        values['expert'] = data.is_expert(email)
         values['logout_url'] = users.create_logout_url('/')
         values['upload_url'] = blobstore.create_upload_url('/profile-save')
         values['user'] = email
     else:
-        values['login_url'] = users.create_login_url('/')
+        values['login_url'] = users.create_login_url('/welcome')
+        values['upload_url'] = blobstore.create_upload_url('/profile-save')
     return values
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        values = get_template_parameters()
-        render_template(self, 'mainpage.html', values)
+            values = get_template_parameters()
+            email = get_user_email()
+            render_template(self, 'mainpage.html', values)
 
 
 #PROFILE SETTING CODE STARS HERE
@@ -57,6 +71,7 @@ class SaveDefineHandler(webapp2.RequestHandler):
     def post(self):
         print('testing')
         email = get_user_email()
+        data.save_email(email)
         defineStat = self.request.get('defineStat')
         if defineStat == "isLearner":
             learnerStat = True
@@ -94,6 +109,8 @@ class SaveProfileHandler(blobstore_handlers.BlobstoreUploadHandler):
             biography = self.request.get('biography')
             location =self.request.get('cityhidden')
 
+        
+
             if type in ['image/jpeg', 'image/png', 'image/gif', 'image/webp']:
                 name= self.request.get('name')
                 my_image= MyImage()
@@ -106,7 +123,12 @@ class SaveProfileHandler(blobstore_handlers.BlobstoreUploadHandler):
             
 
                 data.save_profile(email, name, biography, location, blob_info.key())
+
+
                 self.redirect('/image?id=' + image_id)
+
+            
+            
 
 class ImageHandler(webapp2.RequestHandler):
     def get(self):
@@ -210,6 +232,7 @@ class SaveInterestsHandler(webapp2.RequestHandler):
         new_interests = values['interests']
         data.save_interests(get_user_email(), new_interests)
         print(new_interests)
+        self.redirect('/profile-feed')
 
 class EditInterestsHandler(webapp2.RequestHandler):
     def get(self):
@@ -238,8 +261,22 @@ class EditInterestsHandler(webapp2.RequestHandler):
 
 #INTERESTS CODE ENDS HERE
 
+class SetUserHandler(webapp2.RequestHandler):
+    def get(self):
+        get_template_parameters()
+        email = get_user_email()
+        setvallea = data.is_learner(email)
+        setvalexp = data.is_expert(email)
+        if setvallea or setvalexp:
+            print('EMAIL REC.')
+            self.redirect('/')
+        else:
+            print('EMAIL UNREC.')
+            self.redirect('/set-profile')
+
 
 app = webapp2.WSGIApplication([
+    ('/welcome', SetUserHandler),
     ('/set-profile', DefineHandler),
     ('/definition', SaveDefineHandler),
     ('/edit-profile-student', EditProfileHandler),
