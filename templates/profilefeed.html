@@ -8,7 +8,10 @@
     <form method="post" action="/create_events"
     {% else %}
         {% for available_expert in available_experts %}
-        <a href="/p/{{available_expert.name}}">{{available_expert.name}}
+            {% if available_expert is defined %}
+                <a href="/p/{{available_expert.name}}">{{available_expert.name}}
+            {% else %}
+                <a href="/p/{{available_expert.name}}">
         {% endfor %}
     {% endif %}
 

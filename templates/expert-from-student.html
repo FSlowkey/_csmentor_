@@ -19,7 +19,6 @@
         {% endfor %}
     </h2>
 <form id="email" method ='post' action ='/send-mail'>
-<a href = "mailto:{{email}}?subject = "CS Mentor""> Message {{name}} </a><br></br>
 <textarea name="subject" id = 'subject' rows='1' cols='50'> subject </textarea><br></br>
  <input type="hidden" name="profileid" value="{{profileid}}">
 <textarea name="body" id = 'body'rows="5" cols="50"></textarea><br></br>
