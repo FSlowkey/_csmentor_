@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<h1> Are you a... </h1>
+<head>
+    <link rel = 'stylesheet' href = '/i/style-areyouor.css'
+</head>
+<h1 id = 'question' > Are you a... </h1>
 
 <form action="/definition" method="POST">
-<input type="radio" value="isLearner" name="defineStat">Learner<br>
-<input type="radio" value= "isExpert" name="defineStat">Expert<br>
+<label class = 'container'><input type="radio" value="isLearner" name="defineStat">Learner<br><span class="checkmark"></span></label>
+<label class = 'container'><input type="radio" value= "isExpert" name="defineStat">Expert<br><span class="checkmark"></span></label>
 
-<input type="submit" >
+<input type="submit" id='submit' >
 </form>
 
 {% endblock %}
