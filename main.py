@@ -314,21 +314,12 @@ class ExpertProfileViewHandler(webapp2.RequestHandler):
 class SendMailHandler(webapp2.RequestHandler):
     def post(self):
         values = get_template_parameters()
-        #user_address = data.get_user_email_by_name(name)
         subject = self.request.get('subject')
         body = self.request.get('body')
-        #email = self.request.get('email')
         sender_address = get_user_email()
         profile_id = self.request.get('profileid')
-        print "Profile id is: " + profile_id
         profile = data.get_profile_by_id(profile_id)
-
         mail.send_mail(sender_address, profile.email, subject, body)
-        self.response.out.write(sender_address)
-        self.response.out.write("the subject is" + subject)
-        self.response.out.write(body)
-        self.response.out.write("We sent to " + profile.email)
-        self.response.out.write("We will send the mail in a minute.")
         render_template(self, 'profilefeed.html', values)
 
 
