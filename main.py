@@ -340,7 +340,7 @@ class SetUserHandler(webapp2.RequestHandler):
         setvalexp = data.is_expert(email)
         if setvallea or setvalexp:
             print('EMAIL REC.')
-            self.redirect('/')
+            self.redirect('/my-feed')
         else:
             print('EMAIL UNREC.')
             self.redirect('/set-profile')
