@@ -314,11 +314,13 @@ class ExpertProfileViewHandler(webapp2.RequestHandler):
 class SendMailHandler(webapp2.RequestHandler):
     def post(self):
         values = get_template_parameters()
-        subject = self.request.get('subject')
-        body = self.request.get('body')
-        sender_address = get_user_email()
+        subject = "Hi! you have a new message from Hyperlink: " + self.request.get('subject')
+        body = get_user_email() + " sent you: " + self.request.get('body')
+        self.response.out.write(subject)
+        self.response.out.write(body)
         profile_id = self.request.get('profileid')
         profile = data.get_profile_by_id(profile_id)
+        sender_address = 'NoReply@cssi-chat-2.appspotmail.com'
         mail.send_mail(sender_address, profile.email, subject, body)
         render_template(self, 'profilefeed.html', values)
 
