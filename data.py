@@ -91,3 +91,7 @@ def is_expert(email):
         return True
     return False
 
+def get_expert_profiles(location):
+    q = UserProfile.query(UserProfile.location == location and UserProfile.isExpert == True)
+    results = q.fetch()
+    return results

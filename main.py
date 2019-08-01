@@ -205,10 +205,31 @@ class ImageManipulationHandler(webapp2.RequestHandler):
 
 #FEED CONTROLLER STARTS HERE
 
+def InterestsMatch(userExpert):
+   #This function checks to see that the user and expert have at least one interest in common
+   current_user_interests =  data.get_user_interests(get_user_email())
+   print(current_user_interests)
+   expert_user_interests = data.get_user_interests(userExpert.email)
+   i = 0
+   for interest in current_user_interests:
+        if current_user_interests[interest] and expert_user_interests[interest]:
+            return True
+   return False
+   
 class FeedHandler(webapp2.RequestHandler):
-    def get(self):
-        values = get_template_parameters()
-        render_template(self, 'profilefeed.html', values)
+   def get(self):
+       neededlocation = data.get_user_profile(get_user_email()).location
+       print(neededlocation)
+       expert_profiles = data.get_expert_profiles(neededlocation)
+       values = get_template_parameters()
+       expert_list = []
+       for expert_profile in expert_profiles:
+           print(InterestsMatch(expert_profile))
+           if InterestsMatch(expert_profile):
+               expert_list.append(expert_profile)
+       values['available_experts'] = expert_list
+       render_template(self, 'profilefeed.html', values)
+
 
 #FEED CONTROLLER ENDS HERE
 
