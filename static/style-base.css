@@ -1,0 +1,28 @@
+.topmenu {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+#title{
+    text-align: center;
+}
+
+#slogan{
+    text-align: center;
+}
+
+menulinks:link, menulinks:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+}
+
+menulinks:hover, menulinks:active {
+  background-color: red;
+}

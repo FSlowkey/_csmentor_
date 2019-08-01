@@ -316,8 +316,6 @@ class SendMailHandler(webapp2.RequestHandler):
         values = get_template_parameters()
         subject = "Hi! you have a new message from Hyperlink: " + self.request.get('subject')
         body = get_user_email() + " sent you: " + self.request.get('body')
-        self.response.out.write(subject)
-        self.response.out.write(body)
         profile_id = self.request.get('profileid')
         profile = data.get_profile_by_id(profile_id)
         sender_address = 'NoReply@cssi-chat-2.appspotmail.com'
