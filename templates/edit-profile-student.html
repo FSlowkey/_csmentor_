@@ -1,60 +1,71 @@
+<!DOCTYPE html>
 <html>
 {% extends "base.html" %}
 {% block content %}
-    <header>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    </header>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Armata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/i/styleEdit.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
     
     <body> 
+    <center>
         {% if learner %}
-        <h2>Welcome Student...</h2>
+        <h2 class= "smallconsole"> H:\> Welcome Student...</h2>
         {% endif %}
         {% if expert %}
-        <h2>Welcome Teacher</h2>
+        <h2 class= "smallconsole"> H:\>Welcome Teacher...</h2>
         {% else %}
-        <h2> Welcome New User </h2>
+        <h2 class= "smallconsole"> H:\> I see you're new to the site... </h2>
         {% endif %}
-        <h1>Create Profile</h1>
-        <form method="post"  action="{{upload_url}}" enctype="multipart/form-data">
-            Name:<br>
-            <input type="text" name="name" value = "{{name}}"><br><br>
-            <div>
-                <h4>Your current location is</h4>
-                <p id="city"></p>
+        <h1 class="consoletext"> H:\> Let's set your profile...</h1>
+        </center>
+<div class="row">
+
+    <div class="column left" style="background-color:white">
+    </div>
+    <div class="column middle" style="background-color:white">
+        <center>
+         <form method="post"  action="{{upload_url}}" enctype="multipart/form-data">
+            <br>
+            <h4 class="textblack">What's your name?</h4>
+            
+            <input type="text" id="namebox" name="name" class = "textareastyle" placeholder="H:\> Make sure you use your real name..."><br><br>
+           
+                <h4 class = "textblack">Your current location is,</h4>
                 <input type="hidden" name="cityhidden" id="cityhidden">
-                <br>
-                <p id="state"></p>
-                <b
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                ?r>
-                <p>(Please, make sure this information is accurate)</p>
-
-
-            </div>
+                <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/the-location-of-the-3331242_960_720.png" id="locicon"> 
+                <div id= "locbox">
+                <p class = "LOCSERVICE" id="city"></p>
+                </div>
+                <p class = "textblack" id="warning" >( H:\> Please, make sure this information is accurate...)</p>
 
 
 
 
-            Biography:<br>
-            <textarea name="biography" rows="16">{{biography}}</textarea><br><br>
-            Upload Profile_picture:<br>
-            <input type="file" name="profile_picture" accept="image/*">
-            <input type="submit">
-                <div id="location">
-                    <iframe src="https://www.w3schools.com"></iframe>
+
+<br>
+
+            <h4 class= "textblack">Tell us more about yourself,</h4> 
+            <textarea  name="biography" rows="16" class = "textareastyle">H:\> It doesn't have to be that complicated...</textarea><br><br>
+            <br>
+            <h4 class="textblack">Let's add a picture to your profile!</h4>
+            <label for="file-upload" class="custom-file-upload">
+    <i class="fa fa-cloud-upload"></i> H:\> Find something pretty...
+</label>
+<input id="file-upload" type="file" name="profile_picture" accept="image/*"/>
+<br>
+<br>
+<h4 id="submitext">H:\> And we're set, let's go!...</h4>
+            <br>
+            <input type="submit" class="button">
         <script>
     
     $.get("https://ipinfo.io", function (response) {
-    $("#city").html(response.city);
-    $("#state").html(response.region);
+        completestring = response.city + ', ' + response.region
+    $("#city").html(completestring);
     $('#cityhidden').val(response.city);
 }, "jsonp");
 
@@ -63,10 +74,16 @@
 
 
 </script>
-    </div>
+
 
 </form>
+</center>
 
+    </div>
+    <div class="column right" style="background-color:white">
+    </div>
+
+</div>
     
     </body>
     {% endblock %}

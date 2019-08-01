@@ -4,8 +4,8 @@ threadsafe: true
 
 handlers:
 - url: /i
-  static_dir: static_files
-- url: .* #send everything that isn't /i to main.app(which is within python)
+  static_dir: static
+- url: /.* #send everything that isn't /i to main.app(which is within python)
   script: main.app
 
 libraries:

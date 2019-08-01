@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+}
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.LOCSERVICE {
+
+    font-family: 'Roboto', sans-serif;
+    color: #5599FF;
+    margin-top: -20px;
+    margin-left: 20px;
+    font-weight: bold;
+
+}
+
+.textblack{
+
+    color: #001717;
+    font-family: 'Roboto', sans-serif;
+
+
+}
+
+ #locicon {
+
+                width: 2%; 
+                height: 2%; 
+                object-fit: contain;
+                vertical-align:middle;
+                margin-left: -180px;
+                
+ }
+
+ #locbox{
+     vertical-align:middle; display:inline;
+ }
+
+#namebox{
+    
+}
+
+.button {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #5599FF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color:#5599FF;
+  border-radius: 8px;
+
+}
+
+.button:hover {
+  background-color: #5599FF; /* Green */
+  color: white;
+}
+
+.consoletext{
+
+    font-family: 'Armata', sans-serif;
+    color: #5599FF;
+    font-size: 40px;
+}
+.smallconsole{
+
+    font-family: 'Armata', sans-serif;
+    color: #5599FF;
+    font-size: 25px;
+}
+
+.textareastyle{
+    width: 500px;
+    font-family: 'Armata', sans-serif;
+    color: #706d6d;
+    font-size: 16px;
+}
+#submitext{
+    font-family: 'Armata', sans-serif;
+    color: #001717;
+    font-size: 16px
+}
+#warning{
+
+    width: 500px;
+    font-family: 'Armata', sans-serif;
+    color: #706d6d;
+    font-size: 12px;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    background-color: white; /* Green */
+    color: #5599FF;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+      border: 2px solid #5599FF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+.custom-file-upload:hover {
+  background-color: #5599FF; /* Green */
+  color: white;
+}
