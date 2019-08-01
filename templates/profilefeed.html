@@ -3,8 +3,14 @@
 <h1>
    <img src="{{image_url}}">
 <body>
-   {% for available_expert in available_experts %}
-   <a href="/p/{{available_expert.name}}">{{available_expert.name}}
-   {% endfor %}
+    {% if is_expert %}
+    hi
+    <form method="post" action="/create_events"
+    {% else %}
+        {% for available_expert in available_experts %}
+        <a href="/p/{{available_expert.name}}">{{available_expert.name}}
+        {% endfor %}
+    {% endif %}
+
 </body>
 {% endblock %}
