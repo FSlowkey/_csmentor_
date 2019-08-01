@@ -1,7 +1,7 @@
 .topmenu {
   padding: 10px;
   text-align: center;
-  background: #5599FF;
+  background: white;
   color: white;
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
@@ -81,4 +81,11 @@ div.sticky{
     position: -webkit-stickey;
     position: sticky;
     top: 0;
+}
+
+.fire{
+
+    width: 5%;
+    height: 5%;
+
 }
