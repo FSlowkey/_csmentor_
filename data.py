@@ -1,5 +1,5 @@
 from socialmodel import UserProfile
-
+from google.appengine.ext import ndb
 
 # THIS IS THE FILE THAT DEALS WITH RETRIEVING A PROFILE AND SAVING THE EDITS
 
@@ -95,3 +95,14 @@ def get_expert_profiles(location):
     q = UserProfile.query(UserProfile.location == location and UserProfile.isExpert == True)
     results = q.fetch()
     return results
+
+def get_user_email_by_name(name):
+    q = UserProfile.query(UserProfile.name == name)
+    results = q.fetch(1)
+    for profile in results:
+        return profile.email
+
+
+def get_profile_by_id(profile_id):
+    profile_key = ndb.Key(urlsafe=profile_id)
+    return profile_key.get()

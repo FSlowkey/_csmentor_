@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div> 
+    <img id = 'profile_pic' src="{{image_url}}" alt="{{name}}">
+</div>
+<h1>
+    {{name}}
+    <h2 id = 'biography'>
+        {{biography}}
+    </h2>
+    <h2 id = 'location'>
+        {{location}}
+    </h2>
+    <h2 id = 'interests' >
+        {% for item in interests %}
+            {% if item.1 %}
+                {{item.0}} / 
+            {% endif %}
+        {% endfor %}
+    </h2>
+<form id="email" method ='post' action ='/send-mail'>
+<a href = "mailto:{{email}}?subject = "CS Mentor""> Message {{name}} </a><br></br>
+<textarea name="subject" id = 'subject' rows='1' cols='50'> subject </textarea><br></br>
+ <input type="hidden" name="profileid" value="{{profileid}}">
+<textarea name="body" id = 'body'rows="5" cols="50"></textarea><br></br>
+<label>send {{name}} a message!</label><br></br>
+<input type="submit">
+</form>
+{% endblock %}

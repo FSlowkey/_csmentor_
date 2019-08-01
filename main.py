@@ -8,7 +8,10 @@ from google.appengine.api import images
 from google.appengine.api import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext import ndb
-
+# email stuff
+from google.appengine.api import app_identity
+from google.appengine.api import mail
+import datetime
 # FUNCTION
 
 
@@ -286,6 +289,48 @@ class EditInterestsHandler(webapp2.RequestHandler):
                 render_template(self, 'interest.html', values)
 
 #INTERESTS CODE ENDS HERE
+#VIEWING EXPERT PROFILE CODE STARTS HERE
+
+
+class ExpertProfileViewHandler(webapp2.RequestHandler):
+    def get(self, name):
+        values = get_template_parameters()
+
+        profile = data.get_user_profile(data.get_user_email_by_name(name))
+        print ">>>>Profile:"
+        print profile
+        if profile:
+            values['profileid'] = profile.key.urlsafe()
+            values['name'] = profile.name
+            values['biography'] = profile.biography
+            values['location'] = profile.location
+            values['profile_pic'] = profile.profile_pic
+            values['interests'] = data.get_user_interests(get_user_email())
+            values['interests'] = values['interests'].items()
+            values['email'] = get_user_email()
+        render_template(self, 'expert-from-student.html', values)
+
+
+class SendMailHandler(webapp2.RequestHandler):
+    def post(self):
+        values = get_template_parameters()
+        #user_address = data.get_user_email_by_name(name)
+        subject = self.request.get('subject')
+        body = self.request.get('body')
+        #email = self.request.get('email')
+        sender_address = get_user_email()
+        profile_id = self.request.get('profileid')
+        print "Profile id is: " + profile_id
+        profile = data.get_profile_by_id(profile_id)
+
+        mail.send_mail(sender_address, profile.email, subject, body)
+        self.response.out.write(sender_address)
+        self.response.out.write("the subject is" + subject)
+        self.response.out.write(body)
+        self.response.out.write("We sent to " + profile.email)
+        self.response.out.write("We will send the mail in a minute.")
+        render_template(self, 'profilefeed.html', values)
+
 
 class SetUserHandler(webapp2.RequestHandler):
     def get(self):
@@ -311,6 +356,8 @@ app = webapp2.WSGIApplication([
     ('/my-feed', FeedHandler),
     ('/interests', EditInterestsHandler),
     ('/interests-save', SaveInterestsHandler),
+    ('/p/(.*)', ExpertProfileViewHandler),
+    ('/send-mail', SendMailHandler),
     ('/img', ImageManipulationHandler),
     ('/.*', MainHandler)
 ])
