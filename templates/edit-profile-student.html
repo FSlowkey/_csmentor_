@@ -1,12 +1,18 @@
 <html>
+{% extends "base.html" %}
+{% block content %}
     <header>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </header>
+    
     <body> 
         {% if learner %}
         <h2>Welcome Student...</h2>
-        {% else %}
+        {% endif %}
+        {% if expert %}
         <h2>Welcome Teacher</h2>
+        {% else %}
+        <h2> Welcome New User </h2>
         {% endif %}
         <h1>Create Profile</h1>
         <form method="post"  action="{{upload_url}}" enctype="multipart/form-data">
@@ -18,7 +24,17 @@
                 <input type="hidden" name="cityhidden" id="cityhidden">
                 <br>
                 <p id="state"></p>
-                <br>
+                <b
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                ?r>
                 <p>(Please, make sure this information is accurate)</p>
 
 
@@ -33,6 +49,7 @@
             <input type="file" name="profile_picture" accept="image/*">
             <input type="submit">
                 <div id="location">
+                    <iframe src="https://www.w3schools.com"></iframe>
         <script>
     
     $.get("https://ipinfo.io", function (response) {
@@ -52,4 +69,6 @@
 
     
     </body>
+    {% endblock %}
+
 </html>

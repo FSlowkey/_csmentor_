@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>
-    <img src="{{image_url}}">
+   <img src="{{image_url}}">
+<body>
+   {% for available_expert in available_experts %}
+   <a href="/expert">{{available_expert.name}}
+   {% endfor %}
+</body>
 {% endblock %}
