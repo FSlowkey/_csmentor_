@@ -19,7 +19,6 @@
     color: #706d6d;
     font-family:'Armata', sans-serif;
     font-size: 16px;
-
 }
     #your-events{
     text-align: center;
@@ -81,7 +80,7 @@
 
     {% else %}
         {% for available_expert in available_experts %}
-        <a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button><br>
+        <div class = 'wrapper'><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button></div><br>
         {% endfor %}
     {% endif %}
 
