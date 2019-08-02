@@ -82,6 +82,41 @@
     color: #706d6d;
     font-size: 16px;
 }
+
+#eventname{
+        font-family: 'Armata', sans-serif;
+    color: #706d6d;
+    font-size: 16px;
+    font-weight:bold;
+
+
+}
+
+#eventdate{
+        font-family: 'Armata', sans-serif;
+    color: #e2c300;
+    font-size: 16px;
+
+}
+
+#eventdesc{
+
+        font-family: 'Armata', sans-serif;
+    color: #706d6d;
+    font-size: 16px;
+    font-weight:bold;
+
+
+}
+#cap{
+
+        font-family: 'Armata', sans-serif;
+    color: #e2c300;
+    font-size: 12px;
+    font-weight:bold;
+
+
+}
 </style>
 </head>
 <div id="profileinfo" style="position: relative; left: 0; top: 0;">
@@ -121,12 +156,19 @@
         {% endfor %}
     </h2>
 <
-<h1 id='expert-events'> {{name}}'s Events!</h1>
+<h1 id='expert-events'> H:\> {{name}} is hosting the following events...</h1>
     {% for event in events %}
-    <h2 class='info' id='event-details'>{{event.name}}</h2>
-        <p class='eventinfo'>{{event.date}}<br></br>
-        {{event.description}}
+    <center>
+        <p>____________________________</p>
+    </center>
+    <h2 class='info' id='eventname'>{{event.name}}</h2>
+        <p class='eventinfo' id='eventdate'>{{event.date}}<br>
         </p>
+    <center>
+    <p id="eventdesc">{{event.description}}</p>
+    <p id="cap">This event has a limit of {{event.cap}} students!</p>
+    <p>____________________________</p>
+    </center>
     {% endfor %}
     <center>
     <p class="textareastyle">H:\> Are you interested? Tell me what to send...

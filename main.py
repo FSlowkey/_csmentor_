@@ -325,8 +325,9 @@ class SaveEventHandler(webapp2.RequestHandler):
         email = get_user_email()
         name = self.request.get('name')
         description = self.request.get('description')
+        cap= self.request.get('cap')
         date = datetime.datetime.strptime(self.request.get('date'), "%Y-%m-%d")
-        data.save_event(email, name, date, description)
+        data.save_event(email, name, date, description,cap)
         self.redirect('/my-feed')
 
 

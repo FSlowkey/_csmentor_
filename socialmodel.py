@@ -6,6 +6,7 @@ class Event(ndb.Model):
     name = ndb.StringProperty()
     date = ndb.DateProperty()
     description = ndb.TextProperty()
+    cap = ndb.TextProperty()
 
 class UserProfile(ndb.Model):
     name = ndb.StringProperty()

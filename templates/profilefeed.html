@@ -156,6 +156,8 @@
         <div class='wrapper'><input class = 'inlinetext' type="date" name="date"></div>
         <h2 class = 'textheader'>Event Description:</h2>
         <div class='wrapper'><textarea class = 'inlinetext' id = 'description' name="description" rows="8">{{event_description}}</textarea><br></div>
+        <h2 class = 'textheader'>Event Cap:</h2>
+        <div class='wrapper'><input class = 'inlinetext' type="text" name="cap"></div>
         <div class='wrapper'><button type="submit" class = 'button'>Submit Event!</button></div>
         <p></p>
 
@@ -177,14 +179,14 @@
         
         {% endfor %}
 
-        <h1 class = 'header'>
+        <!-- <h1 class = 'header'>
             Events
         </h1>
-        {% for event in events %} {{event.name}}, {{event.date}}, "{{event.description}}""
+         {% for event in events %} {{event.name}}, {{event.date}}, "{{event.description}}"" -->
 
         <div class = 'wrapper'>
             
-<center><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button></center>
+
 </div>
             </div><br>
 
