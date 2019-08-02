@@ -210,6 +210,7 @@ class FeedHandler(webapp2.RequestHandler):
         expert_list = []
         for expert_profile in expert_profiles:
             if InterestsMatch(expert_profile):
+                expert_profile.keyUrl = expert_profile.key.urlsafe()
                 expert_list.append(expert_profile)
         values['available_experts'] = expert_list
         values['events'] = []
