@@ -13,6 +13,18 @@
   -ms-user-select: none;
   user-select: none;
 }
+.consoletext{
+
+    font-family: 'Armata', sans-serif;
+    color: #5599FF;
+    font-size: 40px;
+}
+.smallconsole{
+
+    font-family: 'Armata', sans-serif;
+    color: #5599FF;
+    font-size: 25px;
+}
 
 /* Hide the browser's default checkbox */
 .container input {

@@ -2,8 +2,25 @@
 {% block content %}
 <head>
         <link rel="stylesheet" href="/i/style-interest.css">
+                <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Armata&display=swap" rel="stylesheet">
 </head>
 <div>
+<center>
+    {% if learner %}
+<h4 class = "consoletext">H:\> Let's set up what you're most interested in learning...
+</h4>
+<h4 class = "smallconsole">H:\> These may change over time, but I'll keep track of them...
+    </h4>
+{% endif %}
+{% if expert %}
+<h4 class = "consoletext">H:\> Let's set up what you're most interested in teaching...
+</h4>
+<h4 class = "smallconsole">H:\> You may acquire new skills over time, but I'll keep track of them...
+    </h4>
+{% endif %}
+</center>
+
     <br></br>
     <form id="interests" method ='post' action ='/interests-save'>
     {% for item in interests %}
@@ -15,5 +32,6 @@
     {% endfor %}
     <input type="submit" id = 'submit' >
     </form>
+    
     </div>
     {% endblock %}
