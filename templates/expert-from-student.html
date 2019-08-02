@@ -1,34 +1,96 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+    #profile_pic{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        height: 90px;
+        width: 90px;
+    }
+    #name{
+        text-align:center;
+        color:#5599FF;
+        font-family:'Roboto', sans-serif;
+    }
+    #expert-events{
+        text-align:center;
+        color:#5599FF;
+        font-family:'Roboto', sans-serif;
+        font-size:30px;
+    }
+    .info{
+        text-align:center;
+        color:black;
+        font-family:'Roboto', sans-serif;
+        font-size:20px;
+    }
+    div.wrapper{
+    text-align: center;
+}
+    #info{
+        font-size:15px;
+    }
+    .button {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #5599FF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color:#5599FF;
+  border-radius: 8px;
+}
+
+    .button:hover {
+    background-color: #5599FF; /* Green */
+    color:white;
+}
+    .eventinfo{
+        text-align:center;
+        color:black;
+        font-family:'Roboto', sans-serif;
+        font-size:17px;
+    }
+        .subject{
+    text-align: center;
+    color: #706d6d;
+    font-family:'Armata', sans-serif;
+    font-size: 16px;
+}
+</style>
 <div> 
     <img with="50vw" id = 'profile_pic' src="{{image_url}}" alt="{{name}}">
 </div>
-<h1>
-    {{name}}
-    <h2 id = 'biography'>
+<h1 id='name'>
+    {{name}} </h1>
+    <h2 class = 'info' id = 'biography'>
         {{biography}}
     </h2>
-    <h2 id = 'location'>
+    <h2  class = 'info' id = 'location'>
         {{location}}
     </h2>
-    <h2 id = 'interests' >
+    <h2 class = 'info' id = 'interests' >
         {% for item in interests %}
             {% if item.1 %}
-                {{item.0}} / 
+                {{item.0}} /
             {% endif %}
         {% endfor %}
     </h2>
 <form id="email" method ='post' action ='/send-mail'>
-<textarea name="subject" id = 'subject' rows='1' cols='50'> subject </textarea><br></br>
+<div class = 'wrapper'><textarea name="subject" id = 'subject' rows='1' cols='50'>subject</textarea></div><br></br>
  <input type="hidden" name="profileid" value="{{profileid}}">
-<textarea name="body" id = 'body'rows="5" cols="50"></textarea><br></br>
-<label>send {{name}} a message!</label><br></br>
-<input type="submit">
+<div class = 'wrapper'><textarea name="body" id = 'body'rows="5" cols="50"></textarea><br></br>
+<label class='info' id='info'>send {{name}} a message!</label><br></br>
+</div>
+<div class='wrapper'><button type="submit" class = 'button'>Submit</button></div>
 </form>
 <h1 id='expert-events'> {{name}}'s Events!</h1>
     {% for event in events %}
-    <h2 id='event-details'>{{event.name}}</h2>
-    {{event.date}}<br>
-    {{event.description}}
+    <h2 class='info' id='event-details'>{{event.name}}</h2>
+        <p class='eventinfo'>{{event.date}}<br></br>
+        {{event.description}}
+        </p>
     {% endfor %}
 {% endblock %}

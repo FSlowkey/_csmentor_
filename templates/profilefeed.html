@@ -19,7 +19,6 @@
     color: #706d6d;
     font-family:'Armata', sans-serif;
     font-size: 16px;
-
 }
     #your-events{
     text-align: center;
@@ -56,7 +55,11 @@
     font-family:'Roboto', sans-serif;
     text-align:center;
 }
-
+    .expert_images{
+        border-radius: 50%;
+        width: 75px;
+        height:75px;
+    }
 </style>
 <h1>
    <img width="50vw" src="{{image_url}}" class = 'center'><br>
@@ -80,8 +83,21 @@
     {% endfor %}
 
     {% else %}
+        <h1 class = 'header'>
+            Experts 
+        </h1>
         {% for available_expert in available_experts %}
-        <a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button><br>
+
+        <div class = 'wrapper'><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button><br></div>
+        {% endfor %}
+
+        <h1 class = 'header'>
+            Events
+        </h1>
+        {% for event in events %} {{event.name}}, {{event.date}}, "{{event.description}}""
+
+        <div class = 'wrapper'><img class = "expert_images"  src="/profilepic?id={{available_expert.keyUrl}}"><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button></div><br>
+
         {% endfor %}
     {% endif %}
 
