@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="/i/style-base.css">
     </head>
     <body>
-        <div>
+        <div id = 'sticky'>
         <div class="topmenu">
             <center>
                                 <marquee behavior=scroll direction="left" scrollamount="50">
@@ -22,7 +22,7 @@
                     </marquee>
 
             </center>
-        <p class = 'menulinks' >
+        <p class = 'button' >
             <a href = '/my-feed' ><button id = 'button1'>Home</button></a>
             {% if login_url %}
             <a href = "{{login_url}}"><button id='button2'>Login</button></a>
