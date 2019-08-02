@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>
-   <img width="50vw" src="{{image_url}}">
+   <img width="50vw" src="{{image_url}}"><br>
 <body>
     {% if expert %}
     <h1>Create an event!</h1>
@@ -23,7 +23,7 @@
 
     {% else %}
         {% for available_expert in available_experts %}
-        <a href="/p/{{available_expert.name}}">{{available_expert.name}}
+        <a href="/p/{{available_expert.name}}">{{available_expert.name}}<br>
         {% endfor %}
     {% endif %}
 
