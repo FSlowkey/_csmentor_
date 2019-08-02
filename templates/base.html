@@ -9,15 +9,10 @@
 
                 <img id = 'img'src="/i/hyperlinklogo.png">
             </center>
-<<<<<<< HEAD
+
 
             <br>
 
-=======
-            <h1 id='title'>
-                HyperLink
-            </h1>
->>>>>>> 2b8aebbc2f822c61d69d053b256c1caf7cee3c76
             <a href = '/my-feed' ><button class = 'button'>Home</button></a>
             {% if login_url %}
             <a href = "{{login_url}}"><button class='button'>Login</button></a>
@@ -26,6 +21,7 @@
             <a href = "/interests"><button class='button'>Edit Interests</button></a>
             <a href = "/edit-profile-student"><button class='button'>Edit Profile</button></a>
             {% endif %}
+
         </div>
         </div>
         {% block content %}{% endblock %}

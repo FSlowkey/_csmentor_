@@ -213,12 +213,17 @@ class FeedHandler(webapp2.RequestHandler):
                 expert_profile.keyUrl = expert_profile.key.urlsafe()
                 expert_list.append(expert_profile)
         values['available_experts'] = expert_list
+        for expert in values['available_experts']:
+            values['expimg']='/profilepic?id=' + expert.key.urlsafe()
         values['events'] = []
         events_key_list = data.get_user_profile(get_user_email()).events_list
         for events_key in events_key_list:
             event = events_key.get()
             values['events'].append(event)
         values['name'] = profile.name
+        values['location'] = profile.location
+        values['biography'] = profile.biography
+        values['interests']= profile.interests
         render_template(self, 'profilefeed.html', values)
        else:
             self.redirect('/')
