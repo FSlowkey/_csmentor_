@@ -79,8 +79,17 @@
     {% endfor %}
 
     {% else %}
+        <h1 class = 'header'>
+            Experts 
+        </h1>
         {% for available_expert in available_experts %}
-        <div class = 'wrapper'><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button></div><br>
+        <div class = 'wrapper'><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button><br></div>
+        {% endfor %}
+
+        <h1 class = 'header'>
+            Events
+        </h1>
+        {% for event in events %} {{event.name}}, {{event.date}}, "{{event.description}}""
         {% endfor %}
     {% endif %}
 
