@@ -81,6 +81,14 @@
         width: 75px;
         height:75px;
     }
+        #host{
+        width: 100px;
+        height:100px;
+    }
+           #mega{
+        width: 100px;
+        height:100px;
+    }
 
     #profilename{
         font-family:'Roboto', sans-serif;
@@ -120,7 +128,27 @@
    </center>
    </div>
     {% if expert %}
-    <h1 id = 'create'>H:\> Hi {{name}}, let's create an event!</h1>
+        <center>
+        <img src="/i/teacherfeed.png">
+        <br>
+    </center>
+<br>
+<br>
+
+    <h1 id='your-events'>H:\> You are hosting the following events...</h1>
+    <br>
+    <center>
+<img src="/i/host.png" id="host">
+</center>
+    {% for event in events %}
+    <h2 class = 'textheader' >{{event.name}}</h2>
+    {{event.date}}<br>
+    {{event.description}}
+    {% endfor %}
+    <h1 id = 'create'>H:\> A class? A workshop? A get-together?<br> It's your call {{name}}, let's create an event!...</h1>
+        <center>
+<img src="/i/mega.png" id="mega">
+</center>
     <form id= "create_event" method="post" action="/create_event">
         <h2 class = 'textheader'>Event name:</h2>
         <div class='wrapper'><input class = 'inlinetext' type="text" name="name" value={{event_name}}></div>
@@ -130,12 +158,7 @@
         <div class='wrapper'><textarea class = 'inlinetext' id = 'description' name="description" rows="8">{{event_description}}</textarea><br></div>
         <div class='wrapper'><button type="submit" class = 'button'>Submit Event!</button></div>
         <p></p>
-    <h1 id='your-events'>H:\> Here are your events...</h1>
-    {% for event in events %}
-    <h2 class = 'textheader' >{{event.name}}</h2>
-    {{event.date}}<br>
-    {{event.description}}
-    {% endfor %}
+
 
     {% else %}
 
