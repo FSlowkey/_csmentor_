@@ -138,7 +138,6 @@
                 font-family:'Roboto', sans-serif;
         font-size: 12px;
         color: #e2c300;
->>>>>>> 9c17e017ab8c085529e70fe096c8dc597644347a
 }
 </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -213,17 +212,13 @@
         <br>
     </center>
 <br>
-        {% for available_expert in available_experts %}
-<<<<<<< HEAD
-        <div class = 'wrapper'><div class ="image-cropper"><img class = "expert_images"  src="/profilepic?id={{available_expert.keyUrl}}"></div>
-        <a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button></div><br>
-=======
-        <br>
         <h1 class = 'header'>
-            H:\> Found the following matches in the {{location}} area...
-                    </h1>
-        <div class = 'wrapper'><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}} is ready to teach you something!</button>
-       <!-- <img width="50vw" src="{{expimg}}" class = 'center'><br>--></div>
+                H:\> Found the following matches in the {{location}} area...
+                        </h1>
+        {% for available_expert in available_experts %}
+        <br>
+        <div class = 'wrapper'>  <div class ="image-cropper"><img class = "expert_images"  src="/profilepic?id={{available_expert.keyUrl}}"></div><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}} is ready to teach you something!</button>
+       <!-- <img width="50vw" src="{{expimg}}" class = 'center'><br>--></div><br>
         
         {% endfor %}
 
@@ -237,8 +232,6 @@
 
 </div>
             </div><br>
-
->>>>>>> 9c17e017ab8c085529e70fe096c8dc597644347a
         {% endfor %}
     {% endif %}
 
