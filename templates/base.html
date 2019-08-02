@@ -12,13 +12,13 @@
 
             </center>
 
-            <a href = '/my-feed' ><button id = 'button1'>Home</button></a>
+            <a href = '/my-feed' ><button class = 'button'>Home</button></a>
             {% if login_url %}
-            <a href = "{{login_url}}"><button id='button2'>Login</button></a>
+            <a href = "{{login_url}}"><button class='button'>Login</button></a>
             {% else %}
-            <a href = "{{logout_url}}"><button id='button3'>Logout</button></a>
-            <a href = "/interests"><button id='button4'>Edit Interests</button></a>
-            <a href = "/edit-profile-student"><button id='button5'>Edit Profile</button></a>
+            <a href = "{{logout_url}}"><button class='button'>Logout</button></a>
+            <a href = "/interests"><button class='button'>Edit Interests</button></a>
+            <a href = "/edit-profile-student"><button class='button'>Edit Profile</button></a>
             {% endif %}
         </p>
         </div>

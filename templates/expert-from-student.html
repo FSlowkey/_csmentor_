@@ -25,9 +25,9 @@
 <label>send {{name}} a message!</label><br></br>
 <input type="submit">
 </form>
-<h1> {{name}}'s Events!</h1>
+<h1 id='expert-events'> {{name}}'s Events!</h1>
     {% for event in events %}
-    <h2>{{event.name}}</h2>
+    <h2 id='event-details'>{{event.name}}</h2>
     {{event.date}}<br>
     {{event.description}}
     {% endfor %}
