@@ -217,6 +217,7 @@ class FeedHandler(webapp2.RequestHandler):
         for events_key in events_key_list:
             event = events_key.get()
             values['events'].append(event)
+        values['name'] = profile.name
         render_template(self, 'profilefeed.html', values)
        else:
             self.redirect('/')

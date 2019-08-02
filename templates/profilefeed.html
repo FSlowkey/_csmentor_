@@ -6,6 +6,8 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    height: 75px;
+    width: 75px;
 }
     #create{
     text-align: center;
@@ -30,11 +32,21 @@
     font-family:'Roboto', sans-serif;
 
 }
-    #expert{
-    text-align: center;
-    color: #5599FF;
-    font-family:'Roboto', sans-serif;
+    .button {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #5599FF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color:#5599FF;
+  border-radius: 8px;
 
+}
+
+    .button:hover {
+    background-color: #5599FF; /* Green */
+    color:white;
 }
     div.wrapper{
     text-align: center;
@@ -47,10 +59,10 @@
 
 </style>
 <h1>
-   <img width="50vw" src="{{image_url}}" class = 'image'><br>
+   <img width="50vw" src="{{image_url}}" class = 'center'><br>
 <body>
     {% if expert %}
-    <h1 id = 'create'>Create an event!</h1>
+    <h1 id = 'create'>H:\> Hi {{name}}, let's create an event!</h1>
     <form id= "create_event" method="post" action="/create_event">
         <h2 class = 'textheader'>Event name:</h2>
         <div class='wrapper'><input class = 'inlinetext' type="text" name="name" value={{event_name}}></div>
@@ -58,18 +70,18 @@
         <div class='wrapper'><input class = 'inlinetext' type="date" name="date"></div>
         <h2 class = 'textheader'>Event Description:</h2>
         <div class='wrapper'><textarea class = 'inlinetext' id = 'description' name="description" rows="8">{{event_description}}</textarea><br></div>
-        <div class='wrapper'><input type="submit" value="Submit Event!"></div>
+        <div class='wrapper'><button type="submit" class = 'button'>Submit Event!</button></div>
         <p></p>
-    <h1 id='your-events'> Your Events!</h1>
+    <h1 id='your-events'>H:\> Here are your events...</h1>
     {% for event in events %}
-    <h2 id='event-info'>{{event.name}}</h2>
+    <h2 class = 'textheader' >{{event.name}}</h2>
     {{event.date}}<br>
     {{event.description}}
     {% endfor %}
 
     {% else %}
         {% for available_expert in available_experts %}
-        <a href="/p/{{available_expert.name}}"><button id="expert">{{available_expert.name}}</button><br>
+        <a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button><br>
         {% endfor %}
     {% endif %}
 
