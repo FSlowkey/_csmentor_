@@ -292,6 +292,11 @@ class ExpertProfileViewHandler(webapp2.RequestHandler):
             values['interests'] = data.get_user_interests(get_user_email())
             values['interests'] = values['interests'].items()
             values['email'] = get_user_email()
+            values['events'] = []
+            events_key_list = profile.events_list
+            for events_key in events_key_list:
+                event = events_key.get()
+                values['events'].append(event)
         render_template(self, 'expert-from-student.html', values)
 
 
