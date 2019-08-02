@@ -1,15 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 <head>
-    <link rel = 'stylesheet' href = '/i/style-areyouor.css'
+    <link rel = 'stylesheet' href = '/i/style-areyouor.css'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Armata&display=swap" rel="stylesheet">
 </head>
-<h1 id = 'question' > Are you a... </h1>
+<center>
+<h4 class="smallconsole"> H:\> Welcome. I am Hyperlink...</h4>
+<h4 class="consoletext" > H:\> Let's start by telling me who you are...
+</h4>
+</center>
 
 <form action="/definition" method="POST">
-<label class = 'container'><input type="radio" value="isLearner" name="defineStat">Learner<br><span class="checkmark"></span></label>
-<label class = 'container'><input type="radio" value= "isExpert" name="defineStat">Expert<br><span class="checkmark"></span></label>
+<center>
+<label>
+  <input type="radio" value="isLearner" name="defineStat" id="learner">
+  <img src="/i/learnericon.png">
+</label>
+<label>
+  <input type="radio" value= "isExpert" name="defineStat">
+  <img src="/i/experticon.png">
+</label>
+</center>
 
+<br>
+<center>
 <input type="submit" id='submit' >
+</center>
 </form>
 
 {% endblock %}
