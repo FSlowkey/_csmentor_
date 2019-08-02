@@ -1,5 +1,20 @@
 from socialmodel import UserProfile
+from socialmodel import Event
 from google.appengine.ext import ndb
+#THIS SAVES EVENTS CREATED BY EXPERTS
+def save_event(email, name, date, description):
+    e = Event(email = email, name = name, date = date, description = description)
+    p = get_user_profile(email)
+    if e:
+        e.email = email
+        e.name = name
+        e.date = date
+        e.description = description
+    else: 
+        e = Event(email = email, name = name, date = date, description = description)
+    
+    p.events_list.append(e.put())
+    p.put()
 
 # THIS IS THE FILE THAT DEALS WITH RETRIEVING A PROFILE AND SAVING THE EDITS
 

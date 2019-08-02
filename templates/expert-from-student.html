@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div> 
-    <img id = 'profile_pic' src="{{image_url}}">
+    <img id = 'profile_pic' src="{{image_url}}" alt="{{name}}">
 </div>
 <h1>
     {{name}}
@@ -25,4 +25,10 @@
 <label>send {{name}} a message!</label><br></br>
 <input type="submit">
 </form>
+<h1> {{name}}'s Events!</h1>
+    {% for event in events %}
+    <h2>{{event.name}}</h2>
+    {{event.date}}<br>
+    {{event.description}}
+    {% endfor %}
 {% endblock %}

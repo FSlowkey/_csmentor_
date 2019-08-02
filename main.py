@@ -1,6 +1,7 @@
 import os
 import webapp2
 import data
+import datetime
 
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
@@ -27,17 +28,6 @@ def get_user_email():
         return user.email()
     else:
         return None
-
-#def get_user_name():
- #   email = get_user_email
-  #  p= data.get_user_profile(email)
-   # if p:
-    #    return p.name
-    #else:
-     #   return None
-    
-
-
 
 
 def get_template_parameters():
@@ -112,26 +102,11 @@ class SaveProfileHandler(blobstore_handlers.BlobstoreUploadHandler):
             biography = self.request.get('biography')
             location =self.request.get('cityhidden')
 
-        
-
             if type in ['image/jpeg', 'image/png', 'image/gif', 'image/webp']:
                 name= self.request.get('name')
-                my_image= MyImage()
-                my_image.name = name
-                my_image.user = values['user']
-
-                my_image.image = blob_info.key()
-                my_image.put()
-                image_id = my_image.key.urlsafe()
-            
-
                 data.save_profile(email, name, biography, location, blob_info.key())
-
-
                 self.redirect('/my-feed')
 
-            
-            
 
 class ImageHandler(webapp2.RequestHandler):
     def get(self):
@@ -148,10 +123,15 @@ class ImageHandler(webapp2.RequestHandler):
         values['biography'] = self.request.get('biography')
         render_template(self, 'profilefeed.html', values)
 
-class  MyImage(ndb.Model):
-    name= ndb.StringProperty()
-    image = ndb.BlobKeyProperty()
-    user = ndb.StringProperty()
+
+class ViewPhotoHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self):
+        user_id = self.request.get('id')
+        user_profile = ndb.Key(urlsafe=user_id).get()
+
+        blob_key = user_profile.profile_pic
+        self.send_blob(blob_key)
+
 
 class ImageManipulationHandler(webapp2.RequestHandler):
       def get(self):
@@ -211,7 +191,6 @@ class ImageManipulationHandler(webapp2.RequestHandler):
 def InterestsMatch(userExpert):
    #This function checks to see that the user and expert have at least one interest in common
    current_user_interests =  data.get_user_interests(get_user_email())
-   print(current_user_interests)
    expert_user_interests = data.get_user_interests(userExpert.email)
    i = 0
    for interest in current_user_interests:
@@ -220,20 +199,24 @@ def InterestsMatch(userExpert):
    return False
 
 class FeedHandler(webapp2.RequestHandler):
-   def get(self):
-       
+    def get(self):   
        p = get_user_email()
        if p:
         values = get_template_parameters()
-        neededlocation = data.get_user_profile(get_user_email()).location
-        print(neededlocation)
+        profile = data.get_user_profile(p)
+        neededlocation = profile.location
+        values['image_url'] = '/profilepic?id=' + profile.key.urlsafe()
         expert_profiles = data.get_expert_profiles(neededlocation)
         expert_list = []
         for expert_profile in expert_profiles:
-            print(InterestsMatch(expert_profile))
             if InterestsMatch(expert_profile):
                 expert_list.append(expert_profile)
         values['available_experts'] = expert_list
+        values['events'] = []
+        events_key_list = data.get_user_profile(get_user_email()).events_list
+        for events_key in events_key_list:
+            event = events_key.get()
+            values['events'].append(event)
         render_template(self, 'profilefeed.html', values)
        else:
             self.redirect('/')
@@ -300,6 +283,7 @@ class ExpertProfileViewHandler(webapp2.RequestHandler):
         print ">>>>Profile:"
         print profile
         if profile:
+            values['image_url'] = '/profilepic?id=' + profile.key.urlsafe()
             values['profileid'] = profile.key.urlsafe()
             values['name'] = profile.name
             values['biography'] = profile.biography
@@ -321,6 +305,17 @@ class SendMailHandler(webapp2.RequestHandler):
         sender_address = 'NoReply@cssi-chat-2.appspotmail.com'
         mail.send_mail(sender_address, profile.email, subject, body)
         render_template(self, 'profilefeed.html', values)
+
+
+class SaveEventHandler(webapp2.RequestHandler):
+    def post(self):
+        print("hello")
+        email = get_user_email()
+        name = self.request.get('name')
+        description = self.request.get('description')
+        date = datetime.datetime.strptime(self.request.get('date'), "%Y-%m-%d")
+        data.save_event(email, name, date, description)
+        self.redirect('/my-feed')
 
 
 class SetUserHandler(webapp2.RequestHandler):
@@ -350,6 +345,8 @@ app = webapp2.WSGIApplication([
     ('/p/(.*)', ExpertProfileViewHandler),
     ('/send-mail', SendMailHandler),
     ('/img', ImageManipulationHandler),
+    ('/create_event', SaveEventHandler),
+    ('/profilepic', ViewPhotoHandler),
     ('/.*', MainHandler)
 ])
  
