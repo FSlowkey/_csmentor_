@@ -107,6 +107,37 @@
     color: #706d6d;
     font-size: 16px;
 }
+
+.textheader{
+            font-family:'Roboto', sans-serif;
+        font-size: 20px;
+        color: #5599FF;
+
+}
+
+#edate{
+                font-family:'Roboto', sans-serif;
+        font-size: 20px;
+        color: #e2c300;
+}
+#ename{
+                font-family:'Roboto', sans-serif;
+        font-size: 20px;
+        color: #706d6d;
+        font-weight:bold;
+}
+
+#edesc{
+                   font-family:'Roboto', sans-serif;
+        font-size: 14px;
+        color: #706d6d;
+        font-weight:bold;
+}
+#ecap{
+                font-family:'Roboto', sans-serif;
+        font-size: 12px;
+        color: #e2c300;
+}
 </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Armata&display=swap" rel="stylesheet">
@@ -140,27 +171,38 @@
     <center>
 <img src="/i/host.png" id="host">
 </center>
+<br>
     {% for event in events %}
-    <h2 class = 'textheader' >{{event.name}}</h2>
-    {{event.date}}<br>
-    {{event.description}}
+    <center>
+    <h2 class = 'textheader' id="ename" >{{event.name}}</h2>
+    <h2 id= "edate">{{event.date}}</h2>
+    <h2 id="edesc">{{event.description}}
+    </h2>
+    <h2 id="ecap"> This class has a cap of {{event.cap}}</h2>
+    <p class="textareastyle"> _________________________ </p>
+    </center>
     {% endfor %}
     <h1 id = 'create'>H:\> A class? A workshop? A get-together?<br> It's your call {{name}}, let's create an event!...</h1>
         <center>
 <img src="/i/mega.png" id="mega">
 </center>
-    <form id= "create_event" method="post" action="/create_event">
+    <center>
+        <form id= "create_event" method="post" action="/create_event">
         <h2 class = 'textheader'>Event name:</h2>
-        <div class='wrapper'><input class = 'inlinetext' type="text" name="name" value={{event_name}}></div>
+        <div class='wrapper'><input class = 'inlinetext' type="text" name="name" value="{{event_name}}"></div>
         <h2 class = 'textheader'>Event Date</h2>
         <div class='wrapper'><input class = 'inlinetext' type="date" name="date"></div>
         <h2 class = 'textheader'>Event Description:</h2>
         <div class='wrapper'><textarea class = 'inlinetext' id = 'description' name="description" rows="8">{{event_description}}</textarea><br></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <h2 class = 'textheader'>Event Cap:</h2>
         <div class='wrapper'><input class = 'inlinetext' type="text" name="cap"></div>
-        <div class='wrapper'><button type="submit" class = 'button'>Submit Event!</button></div>
-        <p></p>
-
+        <div class='wrapper'><button type="submit" class = 'button'>E:\> Let's host this.</button></div>
+</center>>
 
     {% else %}
 
