@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Armata&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <style>
     .center{
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-    height: 75px;
-    width: 75px;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+		top: 5px;
+		left: 700px;
 }
     #create{
     text-align: center;
@@ -48,52 +59,186 @@
     color:white;
 }
     div.wrapper{
-    text-align: center;
+       width: 100%;
+    height: 10%;
+    
+    background: #FFFFFF;
+    
+    border: 0px solid #000000;    
+    
+    -moz-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+    -webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+    box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
 }
-    .textheader{
-    color:black;
+    .header{
+    color:#5599FF;
     font-family:'Roboto', sans-serif;
     text-align:center;
+
 }
     .expert_images{
         display: inline;
         margin: 0 auto;
         height: 100%;
         width: auto;
-}
-    .image-cropper {
+    }
+        #host{
         width: 100px;
-        height: 100px;
-        position: relative;
-        overflow: hidden;
-        border-radius: 50%;
+        height:100px;
+    }
+           #mega{
+        width: 100px;
+        height:100px;
+    }
+
+    #profilename{
+        font-family:'Roboto', sans-serif;
+        font-size: 32px;
+        color: #5599FF;
+    }
+
+    #loc{
+        font-family:'Roboto', sans-serif;
+        font-size: 20px;
+        color: #5599FF;
+    }
+    .textareastyle{
+    width: 500px;
+    font-family: 'Armata', sans-serif;
+    color: #706d6d;
+    font-size: 16px;
+}
+
+.textheader{
+            font-family:'Roboto', sans-serif;
+        font-size: 20px;
+        color: #5599FF;
+
+}
+
+#edate{
+                font-family:'Roboto', sans-serif;
+        font-size: 20px;
+        color: #e2c300;
+}
+#ename{
+                font-family:'Roboto', sans-serif;
+        font-size: 20px;
+        color: #706d6d;
+        font-weight:bold;
+}
+
+#edesc{
+                   font-family:'Roboto', sans-serif;
+        font-size: 14px;
+        color: #706d6d;
+        font-weight:bold;
+}
+#ecap{
+                font-family:'Roboto', sans-serif;
+        font-size: 12px;
+        color: #e2c300;
+>>>>>>> 9c17e017ab8c085529e70fe096c8dc597644347a
 }
 </style>
-<h1>
-   <img width="50vw" src="{{image_url}}" class = 'center'><br>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Armata&display=swap" rel="stylesheet">
+</head>
+
 <body>
+    <br><br>
+    <div id="profileinfo" style="position: relative; left: 0; top: 0;">
+    <img src="/i/banner.png" style="position: relative; left: 0; top: 50; max-width:100%;">
+   <img width="50vw" src="{{image_url}}" class = 'center'><br><br><br><br><br><br>
+   <center>
+    <p class="textareastyle">H:\> Welcome to the feed...</p>
+   <h1 id="profilename">L:\> {{name}}</h1>
+   <p class="textareastyle">H:\> This user is in</p>
+   <h1 id="loc">L:\> {{location}}</h1>
+   <p class="textareastyle">L:\> {{biography}}</p>
+ 
+   
+   </center>
+   </div>
     {% if expert %}
-    <h1 id = 'create'>H:\> Hi {{name}}, let's create an event!</h1>
-    <form id= "create_event" method="post" action="/create_event">
+        <center>
+        <img src="/i/teacherfeed.png">
+        <br>
+    </center>
+<br>
+<br>
+
+    <h1 id='your-events'>H:\> You are hosting the following events...</h1>
+    <br>
+    <center>
+<img src="/i/host.png" id="host">
+</center>
+<br>
+    {% for event in events %}
+    <center>
+    <h2 class = 'textheader' id="ename" >{{event.name}}</h2>
+    <h2 id= "edate">{{event.date}}</h2>
+    <h2 id="edesc">{{event.description}}
+    </h2>
+    <h2 id="ecap"> This class has a cap of {{event.cap}}</h2>
+    <p class="textareastyle"> _________________________ </p>
+    </center>
+    {% endfor %}
+    <h1 id = 'create'>H:\> A class? A workshop? A get-together?<br> It's your call {{name}}, let's create an event!...</h1>
+        <center>
+<img src="/i/mega.png" id="mega">
+</center>
+    <center>
+        <form id= "create_event" method="post" action="/create_event">
         <h2 class = 'textheader'>Event name:</h2>
-        <div class='wrapper'><input class = 'inlinetext' type="text" name="name" value={{event_name}}></div>
+        <div class='wrapper'><input class = 'inlinetext' type="text" name="name" value="{{event_name}}"></div>
         <h2 class = 'textheader'>Event Date</h2>
         <div class='wrapper'><input class = 'inlinetext' type="date" name="date"></div>
         <h2 class = 'textheader'>Event Description:</h2>
         <div class='wrapper'><textarea class = 'inlinetext' id = 'description' name="description" rows="8">{{event_description}}</textarea><br></div>
-        <div class='wrapper'><button type="submit" class = 'button'>Submit Event!</button></div>
-        <p></p>
-    <h1 id='your-events'>H:\> Here are your events...</h1>
-    {% for event in events %}
-    <h2 class = 'textheader' >{{event.name}}</h2>
-    {{event.date}}<br>
-    {{event.description}}
-    {% endfor %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class = 'textheader'>Event Cap:</h2>
+        <div class='wrapper'><input class = 'inlinetext' type="text" name="cap"></div>
+        <div class='wrapper'><button type="submit" class = 'button'>E:\> Let's host this.</button></div>
+</center>>
 
     {% else %}
+
+    <center>
+        <img src="/i/userfeed.png">
+        <br>
+    </center>
+<br>
         {% for available_expert in available_experts %}
+<<<<<<< HEAD
         <div class = 'wrapper'><div class ="image-cropper"><img class = "expert_images"  src="/profilepic?id={{available_expert.keyUrl}}"></div>
         <a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}}</button></div><br>
+=======
+        <br>
+        <h1 class = 'header'>
+            H:\> Found the following matches in the {{location}} area...
+                    </h1>
+        <div class = 'wrapper'><a href="/p/{{available_expert.name}}"><button class="button">{{available_expert.name}} is ready to teach you something!</button>
+       <!-- <img width="50vw" src="{{expimg}}" class = 'center'><br>--></div>
+        
+        {% endfor %}
+
+        <!-- <h1 class = 'header'>
+            Events
+        </h1>
+         {% for event in events %} {{event.name}}, {{event.date}}, "{{event.description}}"" -->
+
+        <div class = 'wrapper'>
+            
+
+</div>
+            </div><br>
+
+>>>>>>> 9c17e017ab8c085529e70fe096c8dc597644347a
         {% endfor %}
     {% endif %}
 

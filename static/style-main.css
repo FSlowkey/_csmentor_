@@ -1,0 +1,74 @@
+.white{
+    overflow: auto
+}
+.blue{
+    overflow: auto;
+    background-color:#5599FF
+}
+.consoletext{
+
+    font-family: 'Armata', sans-serif;
+    color: #5599FF;
+    font-size: 40px;
+}
+
+.smallconsole{
+
+    font-family: 'Armata', sans-serif;
+    color: #5599FF;
+    font-size: 25px;
+}
+
+.right{
+    width:70%;
+    height:auto;
+
+}
+
+.left{
+    
+   width:60%;
+    height:auto;}
+    #events{
+    
+   width:100%;
+    height:auto;}
+
+
+
+
+img{
+    
+
+}
+.htextwhite{
+      font-family: 'Roboto', sans-serif;
+      color: #848a94;
+      font-size: 20px;
+
+}
+
+.subtitlewhite{
+    font-family: 'Roboto', sans-serif;
+    color: #2f80fa;
+    font-size: 36px;
+
+}
+
+.featurewhite{
+
+      font-family: 'Armata', sans-serif;
+      color: #2f80fa;
+      font-size: 80px;
+    font-weight:bold;
+
+}
+
+.contentwhite{
+
+      font-family: 'Armata', sans-serif;
+      color: #848a94;
+      font-size: 20px;
+      line-height: 2em;
+
+}

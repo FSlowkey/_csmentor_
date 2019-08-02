@@ -6,6 +6,12 @@
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
 }
+.textareastyle{
+    width: 500px;
+    font-family: 'Armata', sans-serif;
+    color: #706d6d;
+    font-size: 16px;
+}
 
 #title{
     text-align: center;
@@ -13,8 +19,8 @@
     color: #5599FF;
 }
 #img{
-    width:397.5px;
-    height:84.75px;
+    width:279.99px;
+    height:98.41px;
 }
 #slogan{
     text-align: center;

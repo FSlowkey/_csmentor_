@@ -213,12 +213,17 @@ class FeedHandler(webapp2.RequestHandler):
                 expert_profile.keyUrl = expert_profile.key.urlsafe()
                 expert_list.append(expert_profile)
         values['available_experts'] = expert_list
+        for expert in values['available_experts']:
+            values['expimg']='/profilepic?id=' + expert.key.urlsafe()
         values['events'] = []
         events_key_list = data.get_user_profile(get_user_email()).events_list
         for events_key in events_key_list:
             event = events_key.get()
             values['events'].append(event)
         values['name'] = profile.name
+        values['location'] = profile.location
+        values['biography'] = profile.biography
+        values['interests']= profile.interests
         render_template(self, 'profilefeed.html', values)
        else:
             self.redirect('/')
@@ -320,8 +325,9 @@ class SaveEventHandler(webapp2.RequestHandler):
         email = get_user_email()
         name = self.request.get('name')
         description = self.request.get('description')
+        cap= self.request.get('cap')
         date = datetime.datetime.strptime(self.request.get('date'), "%Y-%m-%d")
-        data.save_event(email, name, date, description)
+        data.save_event(email, name, date, description,cap)
         self.redirect('/my-feed')
 
 

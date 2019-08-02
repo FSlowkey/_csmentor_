@@ -21,7 +21,9 @@
 {% endif %}
 </center>
 
+
     <br></br>
+    <center>
     <form id="interests" method ='post' action ='/interests-save'>
     {% for item in interests %}
         {% if item.1 %}
@@ -32,6 +34,6 @@
     {% endfor %}
     <input type="submit" id = 'submit' >
     </form>
-    
+    </center>
     </div>
     {% endblock %}
