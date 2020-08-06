@@ -1,14 +1,31 @@
 # _csmentor_
 
- # data.py 
-contains the functions that retrieve user email and save profile attributes.
+Hyperlink is an open-source mentorship application dedicated to sharing Computer Science knowledge to underpriviliged sectors of the population who otherwise would have a harder time finding the most adequate resources for their learning.
 
-# socialmodel.py
+> main.py
 
-contains the definition of the profile attributes in the class UserProfile
+// Contains the request handling of the app; as well as template-rendering specifications.
 
-TEMPLATES
+> data.py 
 
-# edit-profile.html
+// Contains event handling of the app; regarding saving, editing and publishing content.
 
-contains the edit/create profile layout / contains the geolocation service.
+> socialmodel.py
+
+// Contains the data structure model for users and content.
+
+> app.yaml
+
+// Contains app specifications.
+
+> 'Static' Directory 
+
+// Contains all images, vectors and visual resources that build the UI of the app.
+
+> 'Templates' Directory
+
+// Contains all HTML templates for rendering the app.
+
+
+This project was showcased at Google Pittsburgh on August 3rd 2019.
+
